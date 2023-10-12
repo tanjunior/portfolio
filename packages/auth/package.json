@@ -12,7 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@acme/db": "^0.1.0",
+    "@acme/db": "*",
     "@auth/core": "^0.16.1",
     "@auth/drizzle-adapter": "^0.3.3",
     "@t3-oss/env-nextjs": "^0.7.0",
@@ -24,8 +24,8 @@
   },
   "devDependencies": {
     "@acme/eslint-config": "^0.2.0",
-    "@acme/prettier-config": "^0.1.0",
-    "@acme/tsconfig": "^0.1.0",
+    "@acme/prettier-config": "*",
+    "@acme/tsconfig": "*",
     "eslint": "^8.50.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"

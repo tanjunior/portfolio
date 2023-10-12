@@ -22,6 +22,7 @@
       }
     },
     "production": {
+      "extends": "base",
       "channel": "main"
     }
   },
