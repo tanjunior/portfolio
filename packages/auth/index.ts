@@ -1,4 +1,5 @@
-import Discord from "@auth/core/providers/discord";
+// import Discord from "@auth/core/providers/discord";
+import Google from "@auth/core/providers/google";
 import type { DefaultSession } from "@auth/core/types";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import NextAuth from "next-auth";
@@ -28,9 +29,13 @@ export const {
 } = NextAuth({
   adapter: DrizzleAdapter(db, tableCreator),
   providers: [
-    Discord({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    // Discord({
+    //   clientId: env.DISCORD_CLIENT_ID,
+    //   clientSecret: env.DISCORD_CLIENT_SECRET,
+    // }),
+    Google({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   callbacks: {
