@@ -33,4 +33,4 @@ jobs:
 
       - name: Publish update
         working-directory: apps/expo
-        run: expo publish
+        run: eas update
