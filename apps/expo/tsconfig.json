@@ -17,7 +17,6 @@
     "expo-plugins",
     "src",
     "*.ts",
-    "index.tsx",
     "*.js",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
