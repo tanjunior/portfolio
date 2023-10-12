@@ -24,7 +24,7 @@ jobs:
       - name: Setup EXPO Cli
         uses: expo/expo-github-action@v8
         with:
-          expo-version: latest
+          eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
           packager: bun
 
@@ -32,5 +32,5 @@ jobs:
         run: bun install
 
       - name: Publish update
-        working-directory: apps/mobile
+        working-directory: apps/expo
         run: expo publish
