@@ -33,4 +33,4 @@ jobs:
 
       - name: Publish update
         working-directory: apps/expo
-        run: eas update
+        run: eas update --branch production --commit-message "Update production"
