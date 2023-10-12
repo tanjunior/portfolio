@@ -20,11 +20,12 @@
   },
   "devDependencies": {
     "@acme/eslint-config": "^0.2.0",
-    "@acme/prettier-config": "*",
-    "@acme/tsconfig": "*",
+    "@acme/prettier-config": "^0.1.0",
+    "@acme/tsconfig": "^0.1.0",
     "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.19.13",
     "eslint": "^8.50.0",
+    "mysql2": "^3.6.1",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
