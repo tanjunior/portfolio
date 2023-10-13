@@ -1,25 +1,19 @@
-import { auth } from "@acme/auth";
-
+import { currentUser  } from "@clerk/nextjs";
 import { SignIn, SignOut } from "~/components/auth";
 
 export async function AuthShowcase() {
-  const session = await auth();
+  const user = await currentUser ();
 
-  if (!session) {
+  if (!user) {
     return (
-      <SignIn
-        provider="discord"
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-      >
-        Sign in with Discord
-      </SignIn>
+      <SignIn className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20" />
     );
   }
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <p className="text-center text-2xl text-white">
-        {session && <span>Logged in as {session.user.name}</span>}
+        {user && <span>Logged in as {user.username}</span>}
       </p>
 
       <SignOut className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20">
