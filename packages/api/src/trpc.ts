@@ -1,7 +1,8 @@
 import { initTRPC, TRPCError } from "@trpc/server";
-import type {Context} from "./context";
 import superjson from "superjson";
 import { ZodError } from "zod";
+
+import type { Context } from "./context";
 
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
@@ -23,7 +24,7 @@ const enforceUserIsAuthed = t.middleware(({ next, ctx }) => {
   }
   return next({
     ctx: {
-      session: ctx.session
+      session: ctx.session,
     },
   });
 });

@@ -4,9 +4,9 @@ import { Inter } from "next/font/google";
 import "~/styles/globals.css";
 
 import { headers } from "next/headers";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import { TRPCReactProvider } from "./providers";
-import { ClerkProvider } from "@clerk/nextjs";
 
 const fontSans = Inter({
   subsets: ["latin"],

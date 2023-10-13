@@ -40,21 +40,22 @@ import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 // };
 
 import { appRouter, createContext } from "@acme/api";
+
 // import { createNextApiHandler } from "@trpc/server/adapters/next";
 
 // export API handler
-const handler = (req: Request) => fetchRequestHandler({
-      endpoint: "/api/trpc",
-      router: appRouter,
-      req,
-      createContext,
-      onError({ error, path }) {
-        console.error(`>>> tRPC Error on '${path}'`, error);
-      },
+const handler = (req: Request) =>
+  fetchRequestHandler({
+    endpoint: "/api/trpc",
+    router: appRouter,
+    req,
+    createContext,
+    onError({ error, path }) {
+      console.error(`>>> tRPC Error on '${path}'`, error);
+    },
   });
 
-  export { handler as GET, handler as POST };
-
+export { handler as GET, handler as POST };
 
 // If you need to enable cors, you can do so like this:
 // const handler = async (req: NextApiRequest, res: NextApiResponse) => {

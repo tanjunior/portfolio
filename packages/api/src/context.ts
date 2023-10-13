@@ -28,14 +28,18 @@ function getUserAuth(): AuthSession {
   } else {
     return { session: null };
   }
-};
+}
 
 export const createContext = (opts: FetchCreateContextFnOptions) => {
-  const {session} = getUserAuth();
-
+  const { session } = getUserAuth();
 
   const source = opts.req?.headers.get("x-trpc-source") ?? "unknown";
-  console.log(">>> tRPC Request from", source, "by", session ? session.user.id : "public");
+  console.log(
+    ">>> tRPC Request from",
+    source,
+    "by",
+    session ? session.user.id : "public",
+  );
 
   return {
     session: session,

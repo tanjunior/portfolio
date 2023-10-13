@@ -1,8 +1,9 @@
-import { currentUser  } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
+
 import { SignIn, SignOut } from "~/components/auth";
 
 export async function AuthShowcase() {
-  const user = await currentUser ();
+  const user = await currentUser();
 
   if (!user) {
     return (
