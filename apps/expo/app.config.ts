@@ -16,11 +16,8 @@ const defineConfig = (): ExpoConfig => ({
   },
   updates: {
     fallbackToCacheTimeout: 0,
-    // useClassicUpdates: true,
+    // useClassicUpdates: true
     url: "https://u.expo.dev/76753785-62f2-4741-b18a-ecc9a63b67e1",
-  },
-  runtimeVersion: {
-    policy: "sdkVersion",
   },
   assetBundlePatterns: ["**/*"],
   ios: {
@@ -38,12 +35,17 @@ const defineConfig = (): ExpoConfig => ({
     eas: {
       projectId: "76753785-62f2-4741-b18a-ecc9a63b67e1",
     },
+    clerkPublishableKey:
+      "pk_test_ZmluZS1zdGFyZmlzaC04NS5jbGVyay5hY2NvdW50cy5kZXYk",
   },
   experiments: {
     tsconfigPaths: true,
     typedRoutes: true,
   },
   plugins: ["expo-router", "./expo-plugins/with-modify-gradle.js"],
+  runtimeVersion: {
+    policy: "appVersion",
+  },
 });
 
 export default defineConfig;

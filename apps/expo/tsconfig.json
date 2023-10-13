@@ -1,5 +1,5 @@
 {
-  "extends": "@acme/tsconfig/react-native-library.json",
+  "extends": "@acme/tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
