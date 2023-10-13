@@ -6,6 +6,7 @@ import "~/styles/globals.css";
 import { headers } from "next/headers";
 import { ClerkProvider } from "@clerk/nextjs";
 
+import { env } from "~/env.mjs";
 import { TRPCReactProvider } from "./providers";
 
 const fontSans = Inter({
@@ -40,7 +41,7 @@ export default function Layout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={["font-sans", fontSans.variable].join(" ")}>
-        <ClerkProvider>
+        <ClerkProvider publishableKey={env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
           <TRPCReactProvider headers={headers()}>
             {props.children}
           </TRPCReactProvider>
