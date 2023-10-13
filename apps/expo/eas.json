@@ -19,7 +19,8 @@
       "distribution": "internal",
       "ios": {
         "simulator": true
-      }
+      },
+      "channel": "main"
     },
     "production": {
       "extends": "base",
