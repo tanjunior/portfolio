@@ -22,7 +22,7 @@ export default function Page() {
   React.useEffect(() => {
     const scheduler = setInterval(async () => {
       const token = await getToken();
-      setSessionToken(token as string);
+      setSessionToken(token!);
     }, 1000);
 
     return () => clearInterval(scheduler);
