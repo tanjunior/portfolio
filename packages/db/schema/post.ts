@@ -1,9 +1,8 @@
+import type { InferSelectModel } from "drizzle-orm";
 import { sql } from "drizzle-orm";
-import { serial, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { mysqlTable, serial, timestamp, varchar } from "drizzle-orm/mysql-core";
 
-import { mySqlTable } from "./_table";
-
-export const post = mySqlTable("post", {
+export const post = mysqlTable("posts", {
   id: serial("id").primaryKey(),
   title: varchar("name", { length: 256 }).notNull(),
   content: varchar("content", { length: 256 }).notNull(),
@@ -12,3 +11,5 @@ export const post = mySqlTable("post", {
     .notNull(),
   updatedAt: timestamp("updatedAt").onUpdateNow(),
 });
+
+export type SelectPost = InferSelectModel<typeof post>;
