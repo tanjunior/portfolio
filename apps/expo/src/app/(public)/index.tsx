@@ -9,7 +9,7 @@ import { api } from "~/utils/api";
 export default function Page() {
   const { data, isError, isLoading } = api.post.all.useQuery();
   return (
-    <View className="flex items-center justify-start bg-black pt-5">
+    <View className="flex items-center justify-start bg-white pt-5">
       <Stack.Screen
         options={{
           title: "Home",
@@ -25,27 +25,27 @@ export default function Page() {
       </SignedIn>
       <SignedOut>
         <Link href={"/sign-in"} asChild>
-          <TouchableOpacity className="mt-3, rounded-md, p-3, items-center justify-center border border-white bg-black">
-            <Text className="font-bold text-white">Sign In</Text>
+          <TouchableOpacity className="mt-3, rounded-md, p-3, items-center justify-center border border-black bg-white">
+            <Text className="font-bold text-black">Sign In</Text>
           </TouchableOpacity>
         </Link>
         <Link href={"/sign-up"} asChild>
-          <TouchableOpacity className="mt-3, rounded-md, p-3, items-center justify-center border border-white bg-black">
-            <Text className="font-bold text-white">Sign Up</Text>
+          <TouchableOpacity className="mt-3, rounded-md, p-3, items-center justify-center border border-black bg-white">
+            <Text className="font-bold text-black">Sign Up</Text>
           </TouchableOpacity>
         </Link>
-        {isError ? (
-          <Text className="font-semibold italic text-red-900">Error</Text>
-        ) : isLoading ? (
-          <Text className="font-semibold italic text-green-400">
-            Loading...
-          </Text>
-        ) : (
-          <Text className="font-semibold italic text-white">
-            Press on a post
-          </Text>
-        )}
-        {data && <PostList data={data} />}
+
+        <View className="h-full w-full p-4">
+          {isError ? (
+            <Text className="font-semibold italic text-red-900">Error</Text>
+          ) : isLoading ? (
+            <Text className="font-semibold italic text-green-400">
+              Loading...
+            </Text>
+          ) : (
+            <PostList data={data} />
+          )}
+        </View>
       </SignedOut>
     </View>
   );
