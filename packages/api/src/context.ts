@@ -33,7 +33,7 @@ function getUserAuth(): AuthSession {
 export const createContext = (opts: FetchCreateContextFnOptions) => {
   const { session } = getUserAuth();
 
-  const source = opts.req?.headers.get("x-trpc-source") ?? "unknown";
+  const source = opts?.req?.headers.get("x-trpc-source") ?? "unknown";
   console.log(
     ">>> tRPC Request from",
     source,
@@ -43,7 +43,7 @@ export const createContext = (opts: FetchCreateContextFnOptions) => {
 
   return {
     session: session,
-    headers: opts && Object.fromEntries(opts.req.headers),
+    headers: opts.req.headers,
     db,
   };
 };
