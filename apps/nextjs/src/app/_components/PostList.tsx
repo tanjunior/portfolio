@@ -5,7 +5,7 @@ import { trpc } from "~/utils/client";
 import PostCard, { PostCardSkeleton } from "./PostCard";
 
 export default function PostList() {
-// { posts }: { posts: SelectPost[] }
+  // { posts }: { posts: SelectPost[] }
   const { data } = trpc.post.all
     .useQuery
     // undefined, {
