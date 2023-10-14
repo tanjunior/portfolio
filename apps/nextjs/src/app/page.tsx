@@ -1,7 +1,8 @@
 // import { Suspense } from "react";
 
 import { AuthShowcase } from "../components/auth-showcase";
-import Posts from "../components/Posts";
+
+// import Posts from "../components/Posts";
 
 export const runtime = "edge";
 
@@ -14,7 +15,7 @@ export default function HomePage() {
         </h1>
         <AuthShowcase />
 
-        <Posts />
+        {/* <Posts /> */}
 
         {/* <CreatePostForm />
         <div className="h-[40vh] w-full max-w-2xl overflow-y-scroll">
