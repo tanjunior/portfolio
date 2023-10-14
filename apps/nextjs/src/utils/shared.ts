@@ -9,9 +9,8 @@ export const transformer = superjson;
 
 function getBaseUrl() {
   if (typeof window !== "undefined") return "";
-  const vc = env.VERCEL_URL;
-  if (vc) return "https://" + vc;
-  return "http://localhost:3000";
+  if (env.VERCEL_URL) return `https://${env.VERCEL_URL}`;
+  return `http://localhost:${env.PORT}`;
 }
 
 export function getUrl() {
