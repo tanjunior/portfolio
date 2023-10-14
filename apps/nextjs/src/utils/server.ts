@@ -31,4 +31,4 @@ export const api = createTRPCNextAppDirServer<AppRouter>({
   },
 });
 
-export { type RouterInputs, type RouterOutputs } from "@acme/api";
+// export { type RouterInputs, type RouterOutputs } from "@acme/api";
