@@ -12,18 +12,18 @@ import { tokenCache } from "~/utils/cache";
 // It wraps your pages with the providers they need
 const RootLayout = () => {
   return (
-    <TRPCProvider>
-      <ClerkProvider
-        publishableKey={Constants.expoConfig?.extra?.clerkPublishableKey}
-        tokenCache={tokenCache}
-      >
+    <ClerkProvider
+      publishableKey={Constants.expoConfig?.extra?.clerkPublishableKey}
+      tokenCache={tokenCache}
+    >
+      <TRPCProvider>
         <SafeAreaProvider>
           <ClerkLoaded>
             <Slot />
           </ClerkLoaded>
         </SafeAreaProvider>
-      </ClerkProvider>
-    </TRPCProvider>
+      </TRPCProvider>
+    </ClerkProvider>
   );
 };
 

@@ -31,10 +31,10 @@ export function OAuthButtons() {
 
   return (
     <TouchableOpacity
-      className="my-3, rounded-md, p-3, items-center justify-center border border-white bg-black"
+      className="my-3, rounded-md, p-3, items-center justify-center border border-black bg-white"
       onPress={onPress}
     >
-      <Text className="font-bold text-white">Continue with Google</Text>
+      <Text className="font-bold text-black">Continue with Google</Text>
     </TouchableOpacity>
   );
 }

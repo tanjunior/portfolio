@@ -3,12 +3,16 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Stack } from "expo-router";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 
+import CreatePost from "~/components/CreatePost";
+import PostList from "~/components/PostList";
+import { api } from "~/utils/api";
 import { log } from "~/utils/logger";
 
 export default function Page() {
   const { getToken, signOut, isSignedIn } = useAuth();
   const { user } = useUser();
   const [sessionToken, setSessionToken] = React.useState("");
+  const { data, isError, isLoading } = api.post.all.useQuery();
 
   const onSignOutPress = async () => {
     try {
@@ -39,7 +43,18 @@ export default function Page() {
       <TouchableOpacity onPress={onSignOutPress} style={styles.link}>
         <Text style={styles.linkText}>Sign out</Text>
       </TouchableOpacity>
-      <Text style={styles.token}>{sessionToken}</Text>
+      <View className="h-full w-full p-4">
+        <CreatePost />
+        {isError ? (
+          <Text className="font-semibold italic text-red-900">Error</Text>
+        ) : isLoading ? (
+          <Text className="font-semibold italic text-green-400">
+            Loading...
+          </Text>
+        ) : (
+          <PostList data={data} />
+        )}
+      </View>
     </View>
   );
 }

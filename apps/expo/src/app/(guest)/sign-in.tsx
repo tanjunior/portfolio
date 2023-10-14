@@ -31,17 +31,17 @@ export default function Page() {
   }, [isLoaded, emailAddress, password]);
 
   return (
-    <View className="flex items-center justify-start bg-black pt-5">
+    <View className="flex items-center justify-start bg-white pt-5">
       <Stack.Screen
         options={{
           title: "Sign In",
         }}
       />
-      <View className="mb-5 w-11/12 border-b border-b-white">
+      <View className="mb-5 w-11/12 border-b border-b-black">
         <OAuthButtons />
       </View>
 
-      <View className="mb-5 h-11 w-11/12 rounded-md border border-solid border-white">
+      <View className="mb-5 h-11 w-11/12 rounded-md border border-solid border-black">
         <TextInput
           autoCapitalize="none"
           value={emailAddress}
@@ -52,7 +52,7 @@ export default function Page() {
         />
       </View>
 
-      <View className="mb-5 h-11 w-11/12 rounded-md border border-solid border-white">
+      <View className="mb-5 h-11 w-11/12 rounded-md border border-solid border-black">
         <TextInput
           value={password}
           className="p-2, ml-5 flex h-12"
@@ -64,18 +64,18 @@ export default function Page() {
       </View>
 
       <TouchableOpacity
-        className="mt-10 h-[50px] w-4/5 items-center justify-center rounded-md bg-white"
+        className="mt-10 h-[50px] w-4/5 items-center justify-center rounded-md bg-slate-500"
         onPress={onSignInPress}
       >
-        <Text className="font-bold text-black">Sign in</Text>
+        <Text className="font-bold text-white">Sign in</Text>
       </TouchableOpacity>
 
-      <View className="mt-5 flex items-center justify-center bg-black">
+      <View className="mt-5 flex items-center justify-center bg-white">
         <Text>Have an account?</Text>
 
         <Link href="/sign-up" asChild>
-          <TouchableOpacity className="mt-3, rounded-md, p-3, items-center justify-center border border-white bg-black">
-            <Text className="font-bold text-white">Sign up</Text>
+          <TouchableOpacity className="mt-3, rounded-md, p-3, items-center justify-center border border-white bg-white">
+            <Text className="font-bold text-black">Sign up</Text>
           </TouchableOpacity>
         </Link>
       </View>

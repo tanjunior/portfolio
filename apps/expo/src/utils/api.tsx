@@ -37,7 +37,8 @@ const getBaseUrl = () => {
     //   "Failed to get localhost. Please point to your production server.",
     // );
   }
-  return `http://${localhost}:3000`;
+  return "https://portfolio-nextjs-tanjunior.vercel.app";
+  // return "http://localhost:3000";
 };
 
 /**
@@ -46,7 +47,7 @@ const getBaseUrl = () => {
  */
 
 export function TRPCProvider(props: { children: React.ReactNode }) {
-  // const { getToken } = useAuth();
+  const { getToken } = useAuth();
   const [queryClient] = React.useState(() => new QueryClient());
   const [trpcClient] = React.useState(() =>
     api.createClient({
@@ -54,11 +55,11 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
       links: [
         httpBatchLink({
           url: `${getBaseUrl()}/api/trpc`,
-          headers() {
-            // const authToken = await getToken();
+          async headers() {
+            const authToken = await getToken();
             const headers = new Map<string, string>();
             headers.set("x-trpc-source", "expo-react");
-            // headers.set("authorization", authToken ? authToken : "");
+            if (authToken) headers.set("authorization", authToken);
             return Object.fromEntries(headers);
           },
         }),

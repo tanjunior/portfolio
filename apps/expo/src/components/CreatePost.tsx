@@ -20,8 +20,7 @@ export default function CreatePost() {
   return (
     <View className="mt-4">
       <TextInput
-        className="mb-2 rounded bg-white/10 p-2 text-white"
-        placeholderTextColor="rgba(255, 255, 255, 0.5)"
+        className="mb-2 rounded bg-white/10 p-2 text-black placeholder-gray-500"
         value={title}
         onChangeText={setTitle}
         placeholder="Title"
@@ -32,8 +31,7 @@ export default function CreatePost() {
         </Text>
       )}
       <TextInput
-        className="mb-2 rounded bg-white/10 p-2 text-white"
-        placeholderTextColor="rgba(255, 255, 255, 0.5)"
+        className="mb-2 rounded bg-white/10 p-2 text-black placeholder-gray-500"
         value={content}
         onChangeText={setContent}
         placeholder="Content"
