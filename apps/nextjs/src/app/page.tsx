@@ -1,7 +1,7 @@
 // import { Suspense } from "react";
 
-import { AuthShowcase } from "./_components/auth-showcase";
-import Posts from "./_components/Posts";
+import { AuthShowcase } from "../components/auth-showcase";
+import Posts from "../components/Posts";
 
 export const runtime = "edge";
 
