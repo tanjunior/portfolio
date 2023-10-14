@@ -5,7 +5,6 @@ export const env = createEnv({
   shared: {
     VERCEL_URL: z
       .string()
-      .url()
       .optional()
       .transform((v) => (v ? `https://${v}` : undefined)),
     PORT: z.coerce.number().default(3000),
