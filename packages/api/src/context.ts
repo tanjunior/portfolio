@@ -30,7 +30,7 @@ function getUserAuth(): AuthSession {
   }
 }
 
-export const createContext = (opts: FetchCreateContextFnOptions) => {
+export const createContext = (opts?: FetchCreateContextFnOptions) => {
   const { session } = getUserAuth();
 
   const source = opts?.req?.headers.get("x-trpc-source") ?? "unknown";
@@ -43,7 +43,7 @@ export const createContext = (opts: FetchCreateContextFnOptions) => {
 
   return {
     session: session,
-    headers: opts.req.headers,
+    headers: opts && Object.fromEntries(opts.req.headers),
     db,
   };
 };
