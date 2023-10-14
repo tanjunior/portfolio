@@ -1,10 +1,5 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
-// import { appRouter, createContext } from "@acme/api";
-// // import { auth } from "@acme/auth";
-
-// export const runtime = "edge";
-
 // /**
 //  * Configure basic CORS headers
 //  * You should extend this to match your needs
@@ -40,6 +35,11 @@ import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 // };
 
 import { appRouter, createContext } from "@acme/api";
+
+// import { appRouter, createContext } from "@acme/api";
+// // import { auth } from "@acme/auth";
+
+export const runtime = "edge";
 
 // import { createNextApiHandler } from "@trpc/server/adapters/next";
 
