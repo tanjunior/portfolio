@@ -63,8 +63,8 @@ importers:
         specifier: 2.0.9
         version: 2.0.9(expo-constants@14.4.2)(expo-linking@5.0.2)(expo-modules-autolinking@1.5.1)(expo-status-bar@1.6.0)(expo@49.0.13)(metro@0.76.8)(react-dom@18.2.0)(react-native-gesture-handler@2.12.1)(react-native-safe-area-context@4.6.3)(react-native-screens@3.22.1)(react-native@0.72.5)(react@18.2.0)
       expo-secure-store:
-        specifier: ^12.5.0
-        version: 12.5.0(expo@49.0.13)
+        specifier: ^12.3.1
+        version: 12.3.1(expo@49.0.13)
       expo-splash-screen:
         specifier: ~0.20.5
         version: 0.20.5(expo-modules-autolinking@1.5.1)(expo@49.0.13)
@@ -6449,8 +6449,8 @@ packages:
       - supports-color
     dev: false
 
-  /expo-secure-store@12.5.0(expo@49.0.13):
-    resolution: {integrity: sha512-Ow2ei+SB1w4zPLxmOg2PVPf2i45Eii0T9KUaER5iRLJAMcBWN4nyGCxzESOoN3OrvxVadP0hAn6RVE1G3gdD+Q==}
+  /expo-secure-store@12.3.1(expo@49.0.13):
+    resolution: {integrity: sha512-XLIgWDiIuiR0c+AA4NCWWibAMHCZUyRcy+lQBU49U6rvG+xmd3YrBJfQjfqAPyLroEqnLPGTWUX57GyRsfDOQw==}
     peerDependencies:
       expo: '*'
     dependencies:
