@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { loggerLink, unstable_httpBatchStreamLink } from "@trpc/client";
 
 import { trpc } from "~/utils/client";
-import { getUrl, transformer } from "~/utils/shared";
+import { getBaseUrl, transformer } from "~/utils/shared";
 
 export function TRPCReactProvider(props: {
   children: React.ReactNode;
@@ -33,7 +33,7 @@ export function TRPCReactProvider(props: {
             (opts.direction === "down" && opts.result instanceof Error),
         }),
         unstable_httpBatchStreamLink({
-          url: getUrl(),
+          url: getBaseUrl(),
           headers() {
             const headers = new Map(props.headers);
             headers.set("x-trpc-source", "nextjs-client");
