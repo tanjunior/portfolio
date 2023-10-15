@@ -1,17 +1,14 @@
 "use client";
 
-// import type { SelectPost } from "@acme/db/schema/post";
+import type { SelectPost } from "@acme/db/schema/post";
+
 import { trpc } from "~/utils/client";
 import PostCard, { PostCardSkeleton } from "./PostCard";
 
-export default function PostList() {
-  // { posts }: { posts: SelectPost[] }
-  const { data } = trpc.post.all
-    .useQuery
-    // undefined, {
-    //   initialData: posts,
-    // }
-    ();
+export default function PostList({ posts }: { posts: SelectPost[] }) {
+  const { data } = trpc.post.all.useQuery(undefined, {
+    initialData: posts,
+  });
 
   if (data === undefined) {
     return (
