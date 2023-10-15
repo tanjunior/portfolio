@@ -39,7 +39,7 @@ import { appRouter, createContext } from "@acme/api";
 // import { appRouter, createContext } from "@acme/api";
 // // import { auth } from "@acme/auth";
 
-// export const runtime = "edge";
+export const runtime = "edge";
 
 // import { createNextApiHandler } from "@trpc/server/adapters/next";
 
