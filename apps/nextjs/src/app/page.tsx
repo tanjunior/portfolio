@@ -3,7 +3,7 @@
 import { AuthShowcase } from "../components/auth-showcase";
 import Posts from "../components/Posts";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export default function HomePage() {
   return (
