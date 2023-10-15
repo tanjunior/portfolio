@@ -51,10 +51,6 @@ export const api = createTRPCNextAppDirServer<AppRouter>({
           batch: true,
           url: getUrl(),
           headers() {
-            console.log(
-              "=================================== url ===============================",
-              getUrl(),
-            );
             // Forward headers from the browser to the API
             return {
               ...Object.fromEntries(headers()),
