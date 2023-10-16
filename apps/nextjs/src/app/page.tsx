@@ -1,11 +1,17 @@
-// import { Suspense } from "react";
+import { Suspense } from "react";
 
-import { AuthShowcase } from "../components/auth-showcase";
-import Posts from "../components/Posts";
+import { api } from "~/utils/server";
+import { AuthShowcase } from "./_components/auth-showcase";
+import {
+  CreatePostForm,
+  PostCardSkeleton,
+  PostList,
+} from "./_components/posts";
 
-// export const runtime = "edge";
+export const runtime = "edge";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await api.post.all.query();
   return (
     <main className="flex h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div className="container mt-12 flex flex-col items-center justify-center gap-4 py-8">
@@ -14,9 +20,7 @@ export default function HomePage() {
         </h1>
         <AuthShowcase />
 
-        <Posts />
-
-        {/* <CreatePostForm />
+        <CreatePostForm />
         <div className="h-[40vh] w-full max-w-2xl overflow-y-scroll">
           <Suspense
             fallback={
@@ -27,9 +31,9 @@ export default function HomePage() {
               </div>
             }
           >
-            <PostList />
+            <PostList data={posts} />
           </Suspense>
-        </div> */}
+        </div>
       </div>
     </main>
   );
