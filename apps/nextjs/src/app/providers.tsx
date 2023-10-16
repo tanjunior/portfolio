@@ -38,7 +38,7 @@ export function TRPCReactProvider(props: {
           url: getUrl(),
           headers() {
             const headers = new Map(props.headers);
-            headers.set("x-trpc-source", "nextjs-react");
+            headers.set("x-trpc-source", "nextjs-client");
             return Object.fromEntries(headers);
           },
         }),

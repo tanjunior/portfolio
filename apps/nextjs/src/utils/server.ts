@@ -24,7 +24,7 @@ export const api = experimental_createTRPCNextAppDirServer<AppRouter>({
           headers() {
             return {
               cookie: cookies().toString(),
-              "x-trpc-source": "rsc-http",
+              "x-trpc-source": "nextjs-server",
             };
           },
         }),
