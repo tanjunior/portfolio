@@ -1,12 +1,10 @@
 import { Suspense } from "react";
 
+import { AuthShowcase } from "~/components/auth-showcase";
+import CreatePostForm from "~/components/CreatePostForm";
+import { PostCardSkeleton } from "~/components/PostCard";
+import PostList from "~/components/PostList";
 import { api } from "~/utils/server";
-import { AuthShowcase } from "./_components/auth-showcase";
-import {
-  CreatePostForm,
-  PostCardSkeleton,
-  PostList,
-} from "./_components/posts";
 
 export const runtime = "edge";
 
