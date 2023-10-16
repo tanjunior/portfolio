@@ -28,7 +28,9 @@
     "next": "^13.5.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "stream-chat": "^8.13.0",
     "superjson": "1.13.1",
+    "ws": "^8.14.2",
     "zod": "^3.22.2"
   },
   "devDependencies": {
