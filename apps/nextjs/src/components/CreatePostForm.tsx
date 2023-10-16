@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 
-import { trpc } from "~/utils/client";
+import { api } from "~/utils/client";
 
 export default function CreatePostForm() {
-  const context = trpc.useContext();
+  const context = api.useContext();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const { mutateAsync: createPost, error } = trpc.post.create.useMutation({
+  const { mutateAsync: createPost, error } = api.post.create.useMutation({
     async onSuccess() {
       setTitle("");
       setContent("");

@@ -2,13 +2,13 @@
 
 import type { RouterOutputs } from "@acme/api";
 
-import { trpc } from "~/utils/client";
+import { api } from "~/utils/client";
 
 export default function PostCard(props: {
   post: RouterOutputs["post"]["all"][number];
 }) {
-  const context = trpc.useContext();
-  const deletePost = trpc.post.delete.useMutation({
+  const context = api.useContext();
+  const deletePost = api.post.delete.useMutation({
     onError(err) {
       if (err.data?.code === "UNAUTHORIZED") alert("You must be logged in");
     },

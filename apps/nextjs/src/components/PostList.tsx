@@ -2,15 +2,15 @@
 
 import type { SelectPost } from "@acme/db/schema/post";
 
-import { trpc } from "~/utils/client";
+import { api } from "~/utils/client";
 import PostCard, { PostCardSkeleton } from "./PostCard";
 
-export default function PostList({ posts }: { posts: SelectPost[] }) {
-  const { data } = trpc.post.all.useQuery(undefined, {
-    initialData: posts,
+export default function PostList({ data }: { data: SelectPost[] }) {
+  const [posts] = api.post.all.useSuspenseQuery(undefined, {
+    initialData: data,
   });
 
-  if (data === undefined) {
+  if (posts.length === 0) {
     return (
       <div className="relative flex w-full flex-col gap-4">
         <PostCardSkeleton pulse={false} />
@@ -26,7 +26,7 @@ export default function PostList({ posts }: { posts: SelectPost[] }) {
 
   return (
     <div className="flex w-full flex-col gap-4">
-      {data.map((p) => {
+      {posts.map((p) => {
         return <PostCard key={p.id} post={p} />;
       })}
     </div>

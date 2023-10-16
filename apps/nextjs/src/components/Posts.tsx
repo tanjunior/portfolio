@@ -8,7 +8,7 @@ export default async function Posts() {
   return (
     <div className="h-[50vh] w-full max-w-2xl overflow-y-scroll">
       <CreatePostForm />
-      <PostList posts={posts} />
+      <PostList data={posts} />
       {/* <PostList /> */}
     </div>
   );
