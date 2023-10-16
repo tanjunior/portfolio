@@ -15,6 +15,8 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
+    STREAM_API_KEY: z.string(),
+    STREAM_API_SECRET: z.string(),
   },
   /**
    * Specify your client-side environment variables schema here.
@@ -31,8 +33,10 @@ export const env = createEnv({
     VERCEL_URL: process.env.VERCEL_URL,
     PORT: process.env.PORT,
     DATABASE_URL: process.env.DATABASE_URL,
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+    STREAM_API_KEY: process.env.STREAM_API_KEY,
+    STREAM_API_SECRET: process.env.STREAM_API_SECRET,
   },
   skipValidation:
     !!process.env.CI ||
