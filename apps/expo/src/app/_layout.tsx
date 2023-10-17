@@ -1,30 +1,50 @@
-import React from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import Constants from "expo-constants";
-import { Slot } from "expo-router";
-// import { StatusBar } from "expo-status-bar";
-import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
+import React, { useEffect } from "react";
+import { Slot, useRouter, useSegments } from "expo-router";
+import { ClerkLoaded, ClerkProvider, useAuth } from "@clerk/clerk-expo";
 
 import { TRPCProvider } from "~/utils/api";
 import { tokenCache } from "~/utils/cache";
 
+export {
+  // Catch any errors thrown by the Layout component.
+  ErrorBoundary,
+} from "expo-router";
+
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
 // This is the main layout of the app
 // It wraps your pages with the providers they need
-const RootLayout = () => {
+function RootLayout() {
   return (
-    <ClerkProvider
-      publishableKey={Constants.expoConfig?.extra?.clerkPublishableKey}
-      tokenCache={tokenCache}
-    >
-      <TRPCProvider>
-        <SafeAreaProvider>
-          <ClerkLoaded>
-            <Slot />
-          </ClerkLoaded>
-        </SafeAreaProvider>
-      </TRPCProvider>
+    <ClerkProvider publishableKey={publishableKey!} tokenCache={tokenCache}>
+      <ClerkLoaded>
+        <InitialLayout />
+      </ClerkLoaded>
     </ClerkProvider>
   );
-};
+}
+
+function InitialLayout() {
+  const { isSignedIn } = useAuth();
+  const router = useRouter();
+  const segments = useSegments();
+
+  useEffect(() => {
+    const inTabsGroup = segments[0] === "(auth)";
+
+    if (isSignedIn && !inTabsGroup) {
+      router.replace("(home)");
+    } else if (!isSignedIn) {
+      router.replace("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSignedIn]);
+
+  return (
+    <TRPCProvider>
+      <Slot />
+    </TRPCProvider>
+  );
+}
 
 export default RootLayout;
