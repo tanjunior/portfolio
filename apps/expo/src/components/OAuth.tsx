@@ -16,6 +16,7 @@ export function OAuthButtons() {
 
   const onPress = React.useCallback(async () => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { createdSessionId, signIn, signUp, setActive } =
         await startOAuthFlow();
 
@@ -27,6 +28,7 @@ export function OAuthButtons() {
     } catch (err) {
       console.error("OAuth error", err);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
