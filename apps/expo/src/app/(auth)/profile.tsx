@@ -1,86 +1,88 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Stack } from "expo-router";
-import { useAuth, useUser } from "@clerk/clerk-expo";
+import { useState } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { useUser } from "@clerk/clerk-expo";
 
-import CreatePost from "~/components/CreatePost";
-import PostList from "~/components/PostList";
-import { api } from "~/utils/api";
-import { log } from "~/utils/logger";
+// import { log } from "~/utils/logger";
 
-export default function Page() {
-  const { getToken, signOut, isSignedIn } = useAuth();
+const Profile = () => {
   const { user } = useUser();
-  const [sessionToken, setSessionToken] = React.useState("");
-  const { data, isError, isLoading } = api.post.all.useQuery();
+  // const { signOut } = useAuth();
+  const [firstName, setFirstName] = useState(user?.firstName);
+  const [lastName, setLastName] = useState(user?.lastName);
 
-  const onSignOutPress = async () => {
+  const onSaveUser = async () => {
     try {
-      await signOut();
-    } catch (err: any) {
-      log("Error:> " + err?.status || "");
-      log("Error:> " + err?.errors ? JSON.stringify(err.errors) : err);
+      // This is not working!
+      const result = await user?.update({
+        firstName: "John",
+        lastName: "Doe",
+      });
+      console.log("🚀 ~ file: profile.tsx:16 ~ onSaveUser ~ result:", result);
+    } catch (e) {
+      console.log(
+        "🚀 ~ file: profile.tsx:18 ~ onSaveUser ~ e",
+        JSON.stringify(e),
+      );
     }
   };
 
-  React.useEffect(() => {
-    const scheduler = setInterval(async () => {
-      const token = await getToken();
-      setSessionToken(token!);
-    }, 1000);
-
-    return () => clearInterval(scheduler);
-  }, []);
+  // const onSignOutPress = async () => {
+  //   try {
+  //     await signOut();
+  //   } catch (err: any) {
+  //     log("Error:> " + err?.status || "");
+  //     log("Error:> " + err?.errors ? JSON.stringify(err.errors) : err);
+  //   }
+  // };
 
   return (
     <View style={styles.container}>
-      <Stack.Screen
-        options={{
-          title: "Profile",
-        }}
+      <Text style={{ textAlign: "center" }}>
+        Good morning {user?.firstName} {user?.lastName}!
+      </Text>
+
+      <TextInput
+        placeholder="First Name"
+        value={firstName ?? ""}
+        onChangeText={setFirstName}
+        style={styles.inputField}
       />
-      <Text style={styles.title}>Hello {user?.firstName}</Text>
-      <TouchableOpacity onPress={onSignOutPress} style={styles.link}>
-        <Text style={styles.linkText}>Sign out</Text>
-      </TouchableOpacity>
-      <View className="h-full w-full p-4">
-        <CreatePost />
-        {isError ? (
-          <Text className="font-semibold italic text-red-900">Error</Text>
-        ) : isLoading ? (
-          <Text className="font-semibold italic text-green-400">
-            Loading...
-          </Text>
-        ) : (
-          <PostList data={data} />
-        )}
-      </View>
+      <TextInput
+        placeholder="Last Name"
+        value={lastName ?? ""}
+        onChangeText={setLastName}
+        style={styles.inputField}
+      />
+      <Button
+        onPress={onSaveUser}
+        title="Update account"
+        color={"#6c47ff"}
+      ></Button>
+
+      {/* <Button
+        onPress={onSignOutPress}
+        title="Signout"
+        color={"#6c47ff"}
+      ></Button> */}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: 40,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-  linkText: {
-    fontSize: 14,
-    color: "#2e78b7",
-  },
-  token: {
-    marginTop: 15,
-    paddingVertical: 15,
-    fontSize: 15,
+  inputField: {
+    marginVertical: 4,
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#6c47ff",
+    borderRadius: 4,
+    padding: 10,
+    backgroundColor: "#fff",
   },
 });
+
+export default Profile;
