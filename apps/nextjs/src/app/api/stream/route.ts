@@ -24,6 +24,7 @@ export function OPTIONS() {
 }
 
 const handler = async (req: Request) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const body = await req.json();
 
   try {
@@ -32,6 +33,7 @@ const handler = async (req: Request) => {
       env.STREAM_API_SECRET,
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     const token = serverClient.createToken(body.id);
     const response = new Response(JSON.stringify({ token }));
 
