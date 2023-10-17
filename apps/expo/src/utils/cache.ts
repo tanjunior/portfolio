@@ -4,11 +4,11 @@ import type { TokenCache } from "@clerk/clerk-expo/dist/cache";
 
 const createTokenCache = (): TokenCache => {
   return {
-    getToken: (key) => {
+    getToken: async (key) => {
       return SecureStore.getItemAsync(key);
     },
-    saveToken: (key, token) => {
-      return SecureStore.setItemAsync(key, token);
+    saveToken: async (key, value) => {
+      return SecureStore.setItemAsync(key, value);
     },
   };
 };
