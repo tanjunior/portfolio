@@ -18,18 +18,18 @@ import {
 } from "@/ui/form";
 import { Input } from "@/ui/input";
 import { Textarea } from "@/ui/textarea";
-// import { useToast } from "@/ui/use-toast";
+import { useToast } from "@/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import type { Resume } from "@acme/email";
 import { resumeSchema } from "@acme/email";
 
-// import { api } from "~/utils/client";
+import { api } from "~/utils/client";
 
 export default function ResumeForm() {
-  // const { toast } = useToast();
-  // const { mutate } = api.email.sendResume.useMutation();
+  const { toast } = useToast();
+  const { mutate } = api.email.sendResume.useMutation();
 
   // 1. Define your form.
   const form = useForm<Resume>({
@@ -43,27 +43,27 @@ export default function ResumeForm() {
   });
 
   // 2. Define a submit handler.
-  // function onSubmit(values: Resume) {
-  //   // Do something with the form values.
-  //   // ✅ This will be type-safe and validated.
-  //   mutate(values, {
-  //     onSuccess: () => {
-  //       form.reset();
-  //       toast({
-  //         variant: "default",
-  //         title: "Success",
-  //         description: `Resume has been sent to ${values.email}`,
-  //       });
-  //     },
-  //     onError: (error) => {
-  //       toast({
-  //         variant: "destructive",
-  //         title: "Error",
-  //         description: error.message,
-  //       });
-  //     },
-  //   });
-  // }
+  function onSubmit(values: Resume) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    mutate(values, {
+      onSuccess: () => {
+        form.reset();
+        toast({
+          variant: "default",
+          title: "Success",
+          description: `Resume has been sent to ${values.email}`,
+        });
+      },
+      onError: (error) => {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: error.message,
+        });
+      },
+    });
+  }
 
   return (
     <Card className="w-[420px]">
@@ -72,7 +72,7 @@ export default function ResumeForm() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name="name"
