@@ -1,13 +1,12 @@
+import { Resend } from "resend";
 import { z } from "zod";
 
-import {
-  ContactFormEmail2,
-  NotifyTemplate,
-  resend,
-  resumeSchema,
-} from "@acme/email";
+import { ContactFormEmail2, NotifyTemplate, resumeSchema } from "@acme/email";
 
+import { env } from "../../env.mjs";
 import { createTRPCRouter, publicProcedure } from "../trpc";
+
+export const resend = new Resend(env.RESEND_API_KEY);
 
 export const emailRouter = createTRPCRouter({
   contact: publicProcedure
