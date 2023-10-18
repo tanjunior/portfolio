@@ -4,6 +4,7 @@ import { StreamChat } from "stream-chat";
 import type { User } from "stream-chat";
 import type { DefaultStreamChatGenerics } from "stream-chat-expo";
 
+import { env } from "~/env";
 // import useToken from "./useToken";
 import { getBaseUrl } from "~/utils/api";
 
@@ -11,7 +12,7 @@ import { getBaseUrl } from "~/utils/api";
 // import { log } from "~/utils/logger";
 
 export const chatClient: StreamChat<DefaultStreamChatGenerics> =
-  StreamChat.getInstance(process.env.EXPO_PUBLIC_STREAM_API_KEY!);
+  StreamChat.getInstance(env.EXPO_PUBLIC_STREAM_API_KEY);
 
 export const useChatClient = () => {
   const [clientIsReady, setClientIsReady] = useState<boolean>(false);
