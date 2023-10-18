@@ -1,0 +1,13 @@
+{
+  "hasSrc": true,
+  "packages": [
+    "shadcn-ui",
+    "resend"
+  ],
+  "preferredPackageManager": "pnpm",
+  "rootPath": "src/",
+  "orm": null,
+  "driver": null,
+  "provider": null,
+  "auth": null
+}
