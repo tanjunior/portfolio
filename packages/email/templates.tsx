@@ -10,6 +10,7 @@ import {
   Text,
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
+import { z } from "zod";
 
 export function ContactFormEmail({
   message,
@@ -55,3 +56,39 @@ export function ContactFormEmail2({
     </div>
   );
 }
+
+export function EmailTemplate({ name }: { name: string }) {
+  return (
+    <div>
+      <h1>Hello {name},</h1>
+      <p>Thank you for showing interest in my resume.</p>
+      <p>Best Regards,</p>
+      <p>Jing Ren</p>
+    </div>
+  );
+}
+
+export function NotifyTemplate({
+  email,
+  message,
+}: {
+  email: string;
+  message?: string;
+}) {
+  return (
+    <div>
+      <p>{message}</p>
+      <a href={`mailto:${email}`}>Send Email</a>
+    </div>
+  );
+}
+
+export const resumeSchema = z.object({
+  name: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
+  email: z.string().email(),
+  message: z.string().optional(),
+});
+
+export type Resume = z.infer<typeof resumeSchema>;

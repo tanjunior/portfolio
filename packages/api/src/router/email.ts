@@ -1,6 +1,11 @@
 import { z } from "zod";
 
-import { ContactFormEmail2, resend } from "@acme/email";
+import {
+  ContactFormEmail2,
+  NotifyTemplate,
+  resend,
+  resumeSchema,
+} from "@acme/email";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
@@ -32,6 +37,39 @@ export const emailRouter = createTRPCRouter({
       } catch (error) {
         console.log("error", error);
         return { error };
+      }
+    }),
+
+  sendResume: publicProcedure
+    .input(resumeSchema)
+    .mutation(async ({ input }) => {
+      const { name, email, message } = input;
+
+      try {
+        // await resend.sendEmail({
+        //   from: "Tan Jing Ren <contact@tanjingren.me>",
+        //   to: email,
+        //   subject: 'Resume',
+        //   attachments: [
+        //     {
+        //       filename: 'Resume.pdf',
+        //       content: '/static/Resume.pdf',
+        //     }
+        //   ],
+        //   react: EmailTemplate({ name }),
+        // });
+
+        await resend.sendEmail({
+          from: "Playground <contact@tanjingren.me>",
+          to: "junior.tan@live.com",
+          subject: `${name} just requested for a resume`,
+          react: NotifyTemplate({ email, message }),
+        });
+
+        return true;
+      } catch (error) {
+        console.log("error", error);
+        return false;
       }
     }),
 });
