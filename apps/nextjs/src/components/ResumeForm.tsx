@@ -19,11 +19,11 @@ import {
 import { Input } from "@/ui/input";
 import { Textarea } from "@/ui/textarea";
 // import { useToast } from "@/ui/use-toast";
-// import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-// import type { Resume } from "@acme/email";
-// import { resumeSchema } from "@acme/email";
+import type { Resume } from "@acme/email";
+import { resumeSchema } from "@acme/email";
 
 // import { api } from "~/utils/client";
 
@@ -32,8 +32,9 @@ export default function ResumeForm() {
   // const { mutate } = api.email.sendResume.useMutation();
 
   // 1. Define your form.
-  const form = useForm({
-    // resolver: zodResolver<any>(resumeSchema),
+  const form = useForm<Resume>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver<any>(resumeSchema),
     defaultValues: {
       name: "",
       email: "",
