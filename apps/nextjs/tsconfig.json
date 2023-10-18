@@ -8,6 +8,9 @@
       ],
       "@/*": [
         "./src/components/*"
+      ],
+      "$/*": [
+        "./public/*"
       ]
     },
     "plugins": [
