@@ -15,8 +15,9 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL: z.string().url(),
-    STREAM_API_KEY: z.string(),
-    STREAM_API_SECRET: z.string(),
+    STREAM_API_KEY: z.string().min(1),
+    STREAM_API_SECRET: z.string().min(1),
+    RESEND_API_KEY: z.string().min(1),
   },
   /**
    * Specify your client-side environment variables schema here.
@@ -24,7 +25,7 @@ export const env = createEnv({
    */
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
     NEXT_PUBLIC_WEBSOCKET_URL: z.string().min(1),
   },
   /**
@@ -40,6 +41,7 @@ export const env = createEnv({
     STREAM_API_KEY: process.env.STREAM_API_KEY,
     STREAM_API_SECRET: process.env.STREAM_API_SECRET,
     NEXT_PUBLIC_WEBSOCKET_URL: process.env.NEXT_PUBLIC_WEBSOCKET_URL,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
   },
   skipValidation:
     !!process.env.CI ||
