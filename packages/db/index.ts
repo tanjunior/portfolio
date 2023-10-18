@@ -2,8 +2,9 @@ import { Client } from "@planetscale/database";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
 
 import * as post from "./schema/post";
+import * as todo from "./schema/todo";
 
-export const schema = { ...post };
+export const schema = { ...post, ...todo };
 
 export * from "drizzle-orm";
 
