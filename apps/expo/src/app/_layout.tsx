@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Slot, useRouter, useSegments } from "expo-router";
 import { ClerkLoaded, ClerkProvider, useAuth } from "@clerk/clerk-expo";
 
+import { env } from "~/env";
 import { TRPCProvider } from "~/utils/api";
 import { tokenCache } from "~/utils/cache";
 
@@ -10,13 +11,13 @@ export {
   ErrorBoundary,
 } from "expo-router";
 
-const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const publishableKey = env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need
 function RootLayout() {
   return (
-    <ClerkProvider publishableKey={publishableKey!} tokenCache={tokenCache}>
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
         <InitialLayout />
       </ClerkLoaded>
