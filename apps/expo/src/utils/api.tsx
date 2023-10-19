@@ -8,6 +8,8 @@ import superjson from "superjson";
 
 import type { AppRouter } from "@acme/api";
 
+import { env } from "~/env";
+
 /**
  * A set of typesafe hooks for consuming your API.
  */
@@ -32,12 +34,12 @@ export const getBaseUrl = (): string => {
   const localhost = debuggerHost?.split(":")[0];
 
   if (!localhost) {
-    return "https://portfolio-nextjs-tanjunior.vercel.app";
+    return env.EXPO_PUBLIC_API_URL;
     // throw new Error(
     //   "Failed to get localhost. Please point to your production server.",
     // );
   }
-  return "https://portfolio-nextjs-tanjunior.vercel.app";
+  return env.EXPO_PUBLIC_API_URL;
   // return "http://localhost:3000";
 };
 
