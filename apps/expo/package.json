@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "update": "eas update --branch production -m 'Update production'"
+    "update": "eas update --branch production"
   },
   "dependencies": {
     "@clerk/clerk-expo": "^0.19.9",
