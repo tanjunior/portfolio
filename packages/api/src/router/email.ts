@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { z } from "zod";
 
-import { ContactFormEmail2, NotifyTemplate, resumeSchema } from "@acme/email";
+import { ContactFormEmail, NotifyTemplate, resumeSchema } from "@acme/email";
 
 import { env } from "../../env.mjs";
 import { createTRPCRouter, publicProcedure } from "../trpc";
@@ -29,7 +29,7 @@ export const emailRouter = createTRPCRouter({
           //   message: message,
           //   senderEmail: senderEmail,
           // }),
-          react: ContactFormEmail2({ message, senderEmail }),
+          react: ContactFormEmail({ message, senderEmail }),
         });
 
         return true;
