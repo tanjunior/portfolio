@@ -1,14 +1,17 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
-import { useAuth } from "@clerk/clerk-expo";
+import { useUser } from "@clerk/clerk-expo";
 
 import type { RouterOutputs } from "@acme/api";
 
-export default function PostCard(props: {
+export default function PostCard({
+  post,
+  onDelete,
+}: {
   post: RouterOutputs["post"]["all"][number];
   onDelete: () => void;
 }) {
-  const { isSignedIn } = useAuth();
+  const { user } = useUser();
   const router = useRouter();
   return (
     <View className="flex flex-row rounded-lg bg-white/10 p-4">
@@ -17,18 +20,17 @@ export default function PostCard(props: {
           onPress={() =>
             router.push({
               pathname: "[id]",
-              params: { id: props.post.id },
+              params: { id: post.id },
             })
           }
         >
           <Text className="text-xl font-semibold text-black">
-            {props.post.title}
+            {post.content}
           </Text>
-          <Text className="mt-2 text-black">{props.post.content}</Text>
         </TouchableOpacity>
       </View>
-      {isSignedIn && (
-        <TouchableOpacity onPress={props.onDelete}>
+      {user?.id == post.userId && (
+        <TouchableOpacity onPress={onDelete}>
           <Text className="font-bold uppercase text-pink-400">Delete</Text>
         </TouchableOpacity>
       )}
