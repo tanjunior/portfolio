@@ -1,16 +1,34 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { useUser } from "@clerk/clerk-expo";
+// import { useUser } from "@clerk/clerk-expo";
+import { FlashList } from "@shopify/flash-list";
 
-import Posts from "~/components/Posts";
+import CreatePost from "~/components/CreatePost";
+import PostCard from "~/components/PostCard";
+import { api } from "~/utils/api";
 
 const Home = () => {
-  const { user } = useUser();
+  // const { user } = useUser();
+  const { data } = api.post.all.useQuery();
+  const utils = api.useContext();
+  const deletePostMutation = api.post.delete.useMutation({
+    onSettled: () => utils.post.all.invalidate(),
+  });
 
   return (
-    <View className="flex flex-1 items-center justify-center">
-      <Text>Welcome, {user?.emailAddresses[0]?.emailAddress} 🎉</Text>
-      <Posts />
+    <View className="flex-1">
+      <CreatePost />
+      <FlashList
+        data={data}
+        estimatedItemSize={20}
+        ItemSeparatorComponent={() => <View className="h-2" />}
+        renderItem={(p) => (
+          <PostCard
+            post={p.item}
+            onDelete={() => deletePostMutation.mutate(p.item.id)}
+          />
+        )}
+      />
     </View>
   );
 };
