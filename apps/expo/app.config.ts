@@ -44,7 +44,7 @@ const defineConfig = (): ExpoConfig => ({
   },
   plugins: ["expo-router", "./expo-plugins/with-modify-gradle.js"],
   runtimeVersion: {
-    policy: "appVersion",
+    policy: "sdkVersion",
   },
 });
 
