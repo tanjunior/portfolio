@@ -6,12 +6,10 @@ import { api } from "~/utils/api";
 export default function CreatePost() {
   const utils = api.useContext();
 
-  const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
 
   const { mutate, error } = api.post.create.useMutation({
     async onSuccess() {
-      setTitle("");
       setContent("");
       await utils.post.all.invalidate();
     },
@@ -19,17 +17,6 @@ export default function CreatePost() {
 
   return (
     <View className="mt-4">
-      <TextInput
-        className="mb-2 rounded bg-white/10 p-2 text-black placeholder-gray-500"
-        value={title}
-        onChangeText={setTitle}
-        placeholder="Title"
-      />
-      {error?.data?.zodError?.fieldErrors.title && (
-        <Text className="mb-2 text-red-500">
-          {error.data.zodError.fieldErrors.title}
-        </Text>
-      )}
       <TextInput
         className="mb-2 rounded bg-white/10 p-2 text-black placeholder-gray-500"
         value={content}
@@ -44,10 +31,7 @@ export default function CreatePost() {
       <TouchableOpacity
         className="rounded bg-pink-400 p-2"
         onPress={() => {
-          mutate({
-            title,
-            content,
-          });
+          mutate(content);
         }}
       >
         <Text className="font-semibold text-white">Publish post</Text>
