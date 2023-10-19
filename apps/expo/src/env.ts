@@ -6,10 +6,12 @@ export const env = createEnv({
   client: {
     EXPO_PUBLIC_STREAM_API_KEY: z.string().min(1),
     EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
+    EXPO_PUBLIC_API_URL: z.string().url(),
   },
   runtimeEnv: {
     EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY,
     EXPO_PUBLIC_STREAM_API_KEY: process.env.EXPO_PUBLIC_STREAM_API_KEY,
+    EXPO_PUBLIC_API_URL: process.env.EXPO_PUBLIC_API_URL,
   },
 });
