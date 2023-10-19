@@ -364,6 +364,9 @@ importers:
       '@trpc/server':
         specifier: ^10.40.0
         version: 10.40.0
+      resend:
+        specifier: ^1.1.0
+        version: 1.1.0
       superjson:
         specifier: 1.13.1
         version: 1.13.1
@@ -475,12 +478,12 @@ importers:
       '@react-email/tailwind':
         specifier: ^0.0.9
         version: 0.0.9
+      '@react-email/text':
+        specifier: ^0.0.5
+        version: 0.0.5
       react:
         specifier: 18.2.0
         version: 18.2.0
-      resend:
-        specifier: ^1.1.0
-        version: 1.1.0
     devDependencies:
       '@acme/eslint-config':
         specifier: 0.2.0
@@ -488,6 +491,9 @@ importers:
       '@acme/prettier-config':
         specifier: ^0.1.0
         version: link:../../tooling/prettier
+      '@acme/tailwind-config':
+        specifier: ^0.1.0
+        version: link:../../tooling/tailwind
       '@acme/tsconfig':
         specifier: ^0.1.0
         version: link:../../tooling/typescript
@@ -506,6 +512,9 @@ importers:
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
+      tailwindcss:
+        specifier: 3.3.2
+        version: 3.3.2
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -4961,12 +4970,19 @@ packages:
   /@types/eslint-scope@3.7.6:
     resolution: {integrity: sha512-zfM4ipmxVKWdxtDaJ3MP3pBurDXOCoyjvlpE3u6Qzrmw4BPbfm4/ambIeTk/r/J0iq/+2/xp0Fmt+gFvXJY2PQ==}
     dependencies:
-      '@types/eslint': 8.44.5
+      '@types/eslint': 8.44.6
       '@types/estree': 1.0.3
     dev: false
 
   /@types/eslint@8.44.5:
     resolution: {integrity: sha512-Ol2eio8LtD/tGM4Ga7Jb83NuFwEv3NqvssSlifXL9xuFpSyQZw0ecmm2Kux6iU0KxQmp95hlPmGCzGJ0TCFeRA==}
+    dependencies:
+      '@types/estree': 1.0.3
+      '@types/json-schema': 7.0.14
+    dev: false
+
+  /@types/eslint@8.44.6:
+    resolution: {integrity: sha512-P6bY56TVmX8y9J87jHNgQh43h6VVU+6H7oN7hgvivV81K2XY8qJZ5vqPy/HdUoVIelii2kChYVzQanlswPWVFw==}
     dependencies:
       '@types/estree': 1.0.3
       '@types/json-schema': 7.0.14
