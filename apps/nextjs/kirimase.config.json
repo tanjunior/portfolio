@@ -2,12 +2,16 @@
   "hasSrc": true,
   "packages": [
     "shadcn-ui",
+    "drizzle",
+    "clerk",
+    "trpc",
     "resend"
   ],
   "preferredPackageManager": "pnpm",
   "rootPath": "src/",
-  "orm": null,
-  "driver": null,
-  "provider": null,
-  "auth": null
+  "componentLib": "shadcn-ui",
+  "driver": "mysql",
+  "provider": "planetscale",
+  "orm": "drizzle",
+  "auth": "clerk"
 }
