@@ -19,26 +19,25 @@ export default function AppLayout() {
       />
       <Stack.Screen
         name="[id]"
-        options={
-          {
-            // headerBackVisible: false,
-            // headerLeft(props) {
-            //   return (
-            //     <Text
-            //       {...props}
-            //       style={{ marginLeft: 15 }}
-            //       onPress={() => {
-            //         setChannel(undefined);
-            //         setThread(undefined);
-            //         router.back();
-            //       }}
-            //     >
-            //       Back
-            //     </Text>
-            //   );
-            // },
-          }
-        }
+        options={{
+          title: "",
+          // headerBackVisible: false,
+          // headerLeft(props) {
+          //   return (
+          //     <Text
+          //       {...props}
+          //       style={{ marginLeft: 15 }}
+          //       onPress={() => {
+          //         setChannel(undefined);
+          //         setThread(undefined);
+          //         router.back();
+          //       }}
+          //     >
+          //       Back
+          //     </Text>
+          //   );
+          // },
+        }}
       />
     </Stack>
   );
