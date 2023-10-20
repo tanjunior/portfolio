@@ -210,6 +210,9 @@ importers:
       '@acme/email':
         specifier: ^0.1.0
         version: link:../../packages/email
+      '@acme/uploadthing':
+        specifier: ^0.1.0
+        version: link:../../packages/uploadthing
       '@clerk/nextjs':
         specifier: ^4.25.4
         version: 4.25.6(next@13.5.6)(react-dom@18.2.0)(react@18.2.0)
@@ -379,9 +382,9 @@ importers:
       '@acme/email':
         specifier: ^0.1.0
         version: link:../email
-      '@acme/nextjs':
-        specifier: ^0.1.0
-        version: link:../../apps/nextjs
+      '@acme/uploadthing':
+        specifier: 0.1.0
+        version: link:../uploadthing
       '@trpc/client':
         specifier: ^10.40.0
         version: 10.41.0(@trpc/server@10.41.0)
@@ -394,9 +397,6 @@ importers:
       superjson:
         specifier: 1.13.1
         version: 1.13.1
-      uploadthing:
-        specifier: ^5.7.1
-        version: 5.7.2(zod@3.22.4)
       zod:
         specifier: ^3.22.2
         version: 3.22.4
@@ -542,6 +542,28 @@ importers:
       tailwindcss:
         specifier: 3.3.2
         version: 3.3.2
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
+  packages/uploadthing:
+    dependencies:
+      uploadthing:
+        specifier: ^5.7.2
+        version: 5.7.2(zod@3.22.4)
+    devDependencies:
+      '@acme/eslint-config':
+        specifier: 0.2.0
+        version: link:../../tooling/eslint
+      '@acme/prettier-config':
+        specifier: ^0.1.0
+        version: link:../../tooling/prettier
+      '@acme/tsconfig':
+        specifier: ^0.1.0
+        version: link:../../tooling/typescript
+      eslint:
+        specifier: ^8.50.0
+        version: 8.51.0
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
