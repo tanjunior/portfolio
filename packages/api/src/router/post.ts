@@ -27,14 +27,11 @@ export const postRouter = createTRPCRouter({
   create: protectedProcedure
     .input(z.string().min(1).max(256))
     .mutation(({ ctx, input }) => {
-      console.log("post.create");
-      console.log(ctx.session.user);
       const newPost: InsertPost = {
         content: input,
         userId: ctx.session.user!.id,
       };
 
-      console.log(newPost);
       return ctx.db.insert(schema.post).values(newPost);
     }),
 
