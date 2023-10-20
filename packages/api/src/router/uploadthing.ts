@@ -3,12 +3,10 @@ import { genUploader } from "uploadthing/client";
 // import type { FileRouter, inferEndpointInput } from "uploadthing/server";
 import { z } from "zod";
 
-import type { OurFileRouter } from "@acme/nextjs/src/app/api/uploadthing/core";
+import type { OurFileRouter } from "@acme/uploadthing";
 
 import { env } from "../../env.mjs";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
-
-export const resend = new Resend(env.RESEND_API_KEY);
 
 export const uploadthingRouter = createTRPCRouter({
   uploadImages: protectedProcedure
