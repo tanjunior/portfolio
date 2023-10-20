@@ -23,6 +23,9 @@ const defineConfig = (): ExpoConfig => ({
   ios: {
     bundleIdentifier: "your.bundle.identifier",
     supportsTablet: true,
+    config: {
+      usesNonExemptEncryption: false,
+    },
   },
   android: {
     package: "your.bundle.identifier",
@@ -42,7 +45,44 @@ const defineConfig = (): ExpoConfig => ({
     tsconfigPaths: true,
     typedRoutes: true,
   },
-  plugins: ["expo-router", "./expo-plugins/with-modify-gradle.js"],
+  plugins: [
+    "./expo-plugins/with-modify-gradle.js",
+    [
+      "expo-updates",
+      {
+        username: "account-username",
+      },
+    ],
+    [
+      "expo-image-picker",
+      {
+        photosPermission:
+          "The app accesses your photos to let you share them with your friends.",
+      },
+    ],
+
+    [
+      "expo-av",
+      {
+        microphonePermission:
+          "Allow $(PRODUCT_NAME) to access your microphone.",
+      },
+    ],
+    [
+      "expo-document-picker",
+      {
+        iCloudContainerEnvironment: "Production",
+      },
+    ],
+    [
+      "expo-media-library",
+      {
+        photosPermission: "Allow $(PRODUCT_NAME) to access your photos.",
+        savePhotosPermission: "Allow $(PRODUCT_NAME) to save photos.",
+        isAccessMediaLocationEnabled: true,
+      },
+    ],
+  ],
   runtimeVersion: {
     policy: "sdkVersion",
   },
