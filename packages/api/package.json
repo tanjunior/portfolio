@@ -15,12 +15,11 @@
     "@acme/auth": "^0.1.0",
     "@acme/db": "^0.1.0",
     "@acme/email": "^0.1.0",
-    "@acme/nextjs": "^0.1.0",
+    "@acme/uploadthing": "0.1.0",
     "@trpc/client": "^10.40.0",
     "@trpc/server": "^10.40.0",
     "resend": "^1.1.0",
     "superjson": "1.13.1",
-    "uploadthing": "^5.7.1",
     "zod": "^3.22.2"
   },
   "devDependencies": {

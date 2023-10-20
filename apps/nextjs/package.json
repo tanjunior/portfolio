@@ -18,6 +18,7 @@
     "@acme/auth": "^0.1.0",
     "@acme/db": "^0.1.0",
     "@acme/email": "^0.1.0",
+    "@acme/uploadthing": "^0.1.0",
     "@clerk/nextjs": "^4.25.4",
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-avatar": "^1.0.4",
