@@ -18,19 +18,24 @@ import {
 } from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
 
-import { api } from "~/utils/api";
+import type { OurFileRouter } from "~/hooks/useUploadThing";
+import { useUploadThing } from "~/hooks/useUploadThing";
+import { api, getBaseUrl } from "~/utils/api";
 
 export default function CreatePost() {
-  const utils = api.useContext();
+  const utils = api.useUtils();
 
   const [content, setContent] = useState("");
 
   const [pickedImage, setPickedImage] = useState<ImagePickerAsset[]>([]);
   const [pickImageModal, setPickImageModal] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const { uploadThing } = useUploadThing<OurFileRouter>();
 
   const { mutate, error, isError } = api.post.create.useMutation({
     async onSuccess() {
       setContent("");
+      setProgress(0);
       await utils.post.all.invalidate();
     },
   });
@@ -72,6 +77,24 @@ export default function CreatePost() {
     setPickImageModal(false);
   }
 
+  async function handlePublishPost() {
+    setProgress(0);
+    const uploadThingResponse = await uploadThing({
+      files: pickedImage,
+      endpoint: "imageUploader",
+      onUploadProgress({ file: _file, progress }) {
+        setTimeout(() => setProgress(progress), progress * 50);
+      },
+    });
+    console.log(uploadThingResponse);
+
+    mutate(content, {
+      onSuccess() {
+        setProgress(0);
+      },
+    });
+  }
+
   return (
     <View className="">
       <TextInput
@@ -108,9 +131,7 @@ export default function CreatePost() {
         </Pressable>
         <TouchableOpacity
           className="flex-1 rounded bg-pink-400 p-2"
-          onPress={() => {
-            mutate(content);
-          }}
+          onPress={handlePublishPost}
         >
           <Text className="font-semibold text-white">Publish post</Text>
         </TouchableOpacity>
