@@ -1,4 +1,3 @@
-import { generateReactHelpers } from "@uploadthing/react/hooks";
 import type { FileRouter } from "uploadthing/server";
 import { createUploadthing } from "uploadthing/server";
 
@@ -20,5 +19,3 @@ export const ourFileRouter = {
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
-export const { useUploadThing, uploadFiles } =
-  generateReactHelpers<OurFileRouter>();
