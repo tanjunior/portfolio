@@ -7,9 +7,11 @@ import type { InsertPost } from "@acme/db/schema/post";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const postRouter = createTRPCRouter({
-  all: publicProcedure.query(({ ctx }) => {
+  all: publicProcedure.query(async ({ ctx }) => {
     // return ctx.db.select().from(schema.post).orderBy(desc(schema.post.id));
-    return ctx.db.query.post.findMany({ orderBy: desc(schema.post.createdAt) });
+    return await ctx.db.query.post.findMany({
+      orderBy: desc(schema.post.createdAt),
+    });
   }),
 
   byId: publicProcedure
