@@ -1,4 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useUser } from "@clerk/clerk-expo";
 
@@ -27,6 +28,7 @@ export default function PostCard({
           <Text className="text-xl font-semibold text-black">
             {post.content}
           </Text>
+          {post.imageUrl && <Image source={{ uri: post.imageUrl }} />}
         </TouchableOpacity>
       </View>
       {user?.id == post.userId && (
