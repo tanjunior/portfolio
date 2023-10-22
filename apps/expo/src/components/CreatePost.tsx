@@ -45,7 +45,7 @@ export default function CreatePost() {
     const permissionResult = await requestMediaLibraryPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your photos!");
+      alert("You've refused to allow this app to access your photos!");
       return;
     }
 
@@ -64,7 +64,7 @@ export default function CreatePost() {
     const permissionResult = await requestCameraPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your camera!");
+      alert("You've refused to allow this app to access your camera!");
       return;
     }
 
@@ -88,10 +88,9 @@ export default function CreatePost() {
     });
     console.log(uploadThingResponse);
 
-    mutate(content, {
-      onSuccess() {
-        setProgress(0);
-      },
+    mutate({
+      content: content,
+      imageUrl: uploadThingResponse[0]?.fileUrl,
     });
   }
 
@@ -141,14 +140,14 @@ export default function CreatePost() {
         transparent={true}
         visible={pickImageModal}
         onRequestClose={() => {
-          setPickImageModal(!pickImageModal);
+          setPickImageModal(false);
         }}
       >
         <Pressable
           className="flex-1 justify-end rounded bg-white/50 pb-8 blur-sm"
           onPress={(e) => {
             e.stopPropagation();
-            setPickImageModal(!pickImageModal);
+            setPickImageModal(false);
           }}
         >
           <View className="shadow-[0 -25px 25px -12px rgb(0, 0, 0, 0.25)] flex w-full flex-col items-center justify-center gap-1 rounded bg-white">
