@@ -38,29 +38,14 @@ const defineConfig = (): ExpoConfig => ({
     eas: {
       projectId: "76753785-62f2-4741-b18a-ecc9a63b67e1",
     },
-    clerkPublishableKey:
+    CLERK_PUBLISHABLE_KEY:
       "pk_test_ZmluZS1zdGFyZmlzaC04NS5jbGVyay5hY2NvdW50cy5kZXYk",
-  },
-  experiments: {
-    tsconfigPaths: true,
-    typedRoutes: true,
+    STREAM_API_KEY: "4p6a4td8sxkg",
+    API_URL: "https://tanjingren.me",
   },
   plugins: [
     "./expo-plugins/with-modify-gradle.js",
-    [
-      "expo-updates",
-      {
-        username: "account-username",
-      },
-    ],
-    [
-      "expo-image-picker",
-      {
-        photosPermission:
-          "The app accesses your photos to let you share them with your friends.",
-      },
-    ],
-
+    "expo-router",
     [
       "expo-av",
       {
@@ -68,10 +53,18 @@ const defineConfig = (): ExpoConfig => ({
           "Allow $(PRODUCT_NAME) to access your microphone.",
       },
     ],
+
     [
       "expo-document-picker",
       {
         iCloudContainerEnvironment: "Production",
+      },
+    ],
+    [
+      "expo-image-picker",
+      {
+        photosPermission:
+          "The app accesses your photos to let you share them with your friends.",
       },
     ],
     [
@@ -82,9 +75,19 @@ const defineConfig = (): ExpoConfig => ({
         isAccessMediaLocationEnabled: true,
       },
     ],
+    [
+      "expo-updates",
+      {
+        username: "account-username",
+      },
+    ],
   ],
   runtimeVersion: {
     policy: "sdkVersion",
+  },
+  experiments: {
+    tsconfigPaths: true,
+    typedRoutes: true,
   },
 });
 
