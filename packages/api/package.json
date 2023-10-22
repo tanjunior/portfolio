@@ -12,10 +12,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@acme/auth": "^0.1.0",
-    "@acme/db": "^0.1.0",
-    "@acme/email": "^0.1.0",
-    "@acme/uploadthing": "0.1.0",
+    "@acme/auth": "*",
+    "@acme/db": "*",
+    "@acme/email": "*",
+    "@acme/uploadthing": "*",
     "@trpc/client": "^10.40.0",
     "@trpc/server": "^10.40.0",
     "resend": "^1.1.0",
@@ -23,9 +23,9 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@acme/eslint-config": "^0.2.0",
-    "@acme/prettier-config": "^0.1.0",
-    "@acme/tsconfig": "^0.1.0",
+    "@acme/eslint-config": "*",
+    "@acme/prettier-config": "*",
+    "@acme/tsconfig": "*",
     "eslint": "^8.50.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
