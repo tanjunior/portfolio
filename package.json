@@ -26,12 +26,5 @@
     "turbo": "^1.10.15",
     "typescript": "^5.2.2"
   },
-  "pnpm": {
-    "patchedDependencies": {
-      "uploadthing@5.1.0": "patches/uploadthing@5.1.0.patch",
-      "@uploadthing/shared@5.0.1": "patches/@uploadthing__shared@5.0.1.patch",
-      "@uploadthing/mime-types@0.2.0": "patches/@uploadthing__mime-types@0.2.0.patch"
-    }
-  },
   "prettier": "@acme/prettier-config"
 }
