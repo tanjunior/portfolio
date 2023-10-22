@@ -32,15 +32,15 @@ export const getBaseUrl = (): string => {
 
   const debuggerHost = Constants.expoConfig?.hostUri;
   const localhost = debuggerHost?.split(":")[0];
-
+  const apiUrl = env.EXPO_PUBLIC_API_URL;
   if (!localhost) {
-    return env.EXPO_PUBLIC_API_URL;
-    // throw new Error(
-    //   "Failed to get localhost. Please point to your production server.",
-    // );
+    return apiUrl;
+    throw new Error(
+      "Failed to get localhost. Please point to your production server.",
+    );
   }
-  return env.EXPO_PUBLIC_API_URL;
-  // return "http://localhost:3000";
+  // return `http://${localhost}:3000`;
+  return apiUrl;
 };
 
 /**
@@ -48,7 +48,7 @@ export const getBaseUrl = (): string => {
  * Use only in _app.tsx
  */
 
-export function TRPCProvider(props: { children: React.ReactNode }) {
+export function TRPCProvider({ children }: { children: React.ReactNode }) {
   const { getToken } = useAuth();
   const [queryClient] = React.useState(() => new QueryClient());
   const [trpcClient] = React.useState(() =>
@@ -71,9 +71,7 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
 
   return (
     <api.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        {props.children}
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </api.Provider>
   );
 }
