@@ -14,12 +14,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "uploadthing": "^5.7.2"
+    "@uploadthing/react": "^5.7.0",
+    "uploadthing": "5.1.0"
   },
   "devDependencies": {
     "@acme/eslint-config": "0.2.0",
     "@acme/prettier-config": "^0.1.0",
     "@acme/tsconfig": "^0.1.0",
+    "@uploadthing/mime-types": "0.2.0",
+    "@uploadthing/shared": "5.0.1",
     "eslint": "^8.50.0",
     "typescript": "^5.2.2"
   },
