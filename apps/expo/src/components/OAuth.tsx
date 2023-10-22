@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { useOAuth } from "@clerk/clerk-expo";
 
-import { useWamUpBrowser } from "../hooks/useWarmUpBrowser";
+import { useWamUpBrowser } from "~/hooks/useWarmUpBrowser";
 
 WebBrowser.maybeCompleteAuthSession();
 
