@@ -1,6 +1,7 @@
 {
   "extends": "@acme/tsconfig/base.json",
   "compilerOptions": {
+    "target": "ESNext",
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -22,7 +23,11 @@
   },
   "include": [
     ".",
-    ".next/types/**/*.ts"
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "**/*.mjs"
   ],
   "exclude": [
     "node_modules"
