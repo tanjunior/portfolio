@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { and, desc, eq, schema } from "@acme/db";
+import { insertPostSchema } from "@acme/db/schema/post";
 import type { InsertPost } from "@acme/db/schema/post";
 
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
@@ -25,10 +26,11 @@ export const postRouter = createTRPCRouter({
     }),
 
   create: protectedProcedure
-    .input(z.string().min(1).max(256))
+    .input(insertPostSchema)
     .mutation(({ ctx, input }) => {
       const newPost: InsertPost = {
-        content: input,
+        content: input.content,
+        imageUrl: input.imageUrl ?? undefined,
         userId: ctx.session.user!.id,
       };
 
