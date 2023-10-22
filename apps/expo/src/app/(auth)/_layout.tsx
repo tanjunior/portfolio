@@ -12,7 +12,7 @@ export const LogoutButton = () => {
   const doLogout = async () => {
     await chatClient.disconnectUser();
     await signOut();
-    router.replace("/login");
+    // router.replace("(public)/login");
   };
 
   return (
