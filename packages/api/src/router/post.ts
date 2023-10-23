@@ -33,7 +33,7 @@ export const postRouter = createTRPCRouter({
       const newPost: InsertPost = {
         content: input.content,
         imageUrl: input.imageUrl ?? undefined,
-        userId: ctx.session.user!.id,
+        authorId: ctx.session.user!.id,
       };
 
       return ctx.db.insert(schema.post).values(newPost);
@@ -45,7 +45,7 @@ export const postRouter = createTRPCRouter({
       .where(
         and(
           eq(schema.post.id, input),
-          eq(schema.post.userId, ctx.session.user!.id),
+          eq(schema.post.authorId, ctx.session.user!.id),
         ),
       );
   }),
