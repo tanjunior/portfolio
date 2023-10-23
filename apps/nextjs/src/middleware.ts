@@ -7,6 +7,7 @@ export default authMiddleware({
     "/api/stream",
     "/api/uploadthhing",
     "/api/webhook/clerk",
+    "/api/trpc/(.*)",
   ],
 });
 
