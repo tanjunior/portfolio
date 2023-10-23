@@ -53,6 +53,7 @@
     "react-vertical-timeline-component": "^3.6.0",
     "stream-chat": "^8.13.0",
     "superjson": "1.13.1",
+    "svix": "^1.13.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "ws": "^8.14.2",
