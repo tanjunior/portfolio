@@ -16,23 +16,23 @@ export default function PostCard({
 }) {
   const { user } = useUser();
   // const router = useRouter();
-  const { data } = api.auth.getUser.useQuery(post.userId);
+  const { data: author } = api.user.get.useQuery(post.authorId);
 
   return (
     <View className="flex flex-1 flex-col">
       <View className="flex flex-row items-center justify-between p-2">
         <View className="flex flex-row items-center justify-evenly gap-2">
           <Image
-            source={{ uri: data?.imageUrl }}
+            source={{ uri: author?.imageUrl }}
             className="h-14 w-14 rounded-full"
             contentFit="cover"
             contentPosition="center"
           />
           <Text className="text-lg font-semibold text-black">
-            {data?.username}
+            {author?.username}
           </Text>
         </View>
-        {user?.id == post.userId && (
+        {user?.id == post.authorId && (
           <TouchableOpacity onPress={onDelete}>
             <Text className="font-bold uppercase text-pink-400">Delete</Text>
           </TouchableOpacity>
