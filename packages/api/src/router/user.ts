@@ -1,8 +1,10 @@
+import { StreamChat } from "stream-chat";
 import { z } from "zod";
 
 import { and, desc, eq, schema } from "@acme/db";
 import { insertUserSchema, user } from "@acme/db/schema/user";
 
+import { env } from "../../env.mjs";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const userRouter = createTRPCRouter({
@@ -35,7 +37,21 @@ export const userRouter = createTRPCRouter({
 
   delete: publicProcedure
     .input(z.string().min(1))
-    .mutation(async ({ ctx, input }) => {
-      await ctx.db.delete(user).where(eq(schema.user.id, input));
+    .mutation(({ ctx, input }) => {
+      void ctx.db.delete(user).where(eq(schema.user.id, input));
+
+      try {
+        const serverClient = StreamChat.getInstance(
+          env.STREAM_API_KEY,
+          env.STREAM_API_SECRET,
+        );
+
+        void serverClient.deleteUser(input, {
+          hard_delete: true,
+          delete_conversation_channels: true,
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }),
 });

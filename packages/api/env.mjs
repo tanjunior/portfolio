@@ -4,6 +4,8 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     RESEND_API_KEY: z.string().min(1),
+    STREAM_API_KEY: z.string().min(1),
+    STREAM_API_SECRET: z.string().min(1),
     // DISCORD_CLIENT_ID: z.string().min(1),
     // DISCORD_CLIENT_SECRET: z.string().min(1),
     // NEXTAUTH_SECRET:
@@ -21,6 +23,8 @@ export const env = createEnv({
   client: {},
   runtimeEnv: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    STREAM_API_KEY: process.env.STREAM_API_KEY,
+    STREAM_API_SECRET: process.env.STREAM_API_SECRET,
     // NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     // NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     // DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
