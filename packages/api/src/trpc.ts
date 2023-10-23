@@ -42,8 +42,10 @@ interface CreateContextOptions {
 export const createInnerTRPCContext = async (opts: CreateContextOptions) => {
   const session = await getUserAuth();
   const source = opts.headers.get("x-trpc-source") ?? "unknown";
+  const username =
+    session.user?.name ?? opts.headers.get("user-id") ?? "public";
 
-  console.log(">>> tRPC Request from", source, "by", session.user?.name);
+  console.log(">>> tRPC Request from", source, "by", username);
   return {
     session,
     db,
