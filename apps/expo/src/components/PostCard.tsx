@@ -1,9 +1,11 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
+// import { useRouter } from "expo-router";
 import { useUser } from "@clerk/clerk-expo";
 
 import type { RouterOutputs } from "@acme/api";
+
+import { api } from "~/utils/api";
 
 export default function PostCard({
   post,
@@ -13,29 +15,39 @@ export default function PostCard({
   onDelete: () => void;
 }) {
   const { user } = useUser();
-  const router = useRouter();
+  // const router = useRouter();
+  const { data } = api.auth.getUser.useQuery(post.userId);
+
   return (
-    <View className="flex flex-row rounded-lg bg-white/10 p-4">
-      <View className="flex-grow">
-        <TouchableOpacity
-          onPress={() =>
-            router.push({
-              pathname: "[id]",
-              params: { id: post.id },
-            })
-          }
-        >
-          <Text className="text-xl font-semibold text-black">
-            {post.content}
+    <View className="flex flex-1 flex-col">
+      <View className="flex flex-row items-center justify-between p-2">
+        <View className="flex flex-row items-center justify-evenly gap-2">
+          <Image
+            source={{ uri: data?.imageUrl }}
+            className="h-14 w-14 rounded-full"
+            contentFit="cover"
+            contentPosition="center"
+          />
+          <Text className="text-lg font-semibold text-black">
+            {data?.username}
           </Text>
-          {post.imageUrl && <Image source={{ uri: post.imageUrl }} />}
-        </TouchableOpacity>
+        </View>
+        {user?.id == post.userId && (
+          <TouchableOpacity onPress={onDelete}>
+            <Text className="font-bold uppercase text-pink-400">Delete</Text>
+          </TouchableOpacity>
+        )}
       </View>
-      {user?.id == post.userId && (
-        <TouchableOpacity onPress={onDelete}>
-          <Text className="font-bold uppercase text-pink-400">Delete</Text>
-        </TouchableOpacity>
-      )}
+      <Text className="p-2 text-base text-black">{post.content}</Text>
+      <TouchableOpacity className="flex flex-row">
+        {post.imageUrl && (
+          <Image
+            className="aspect-square w-full flex-1"
+            contentFit="cover"
+            source={{ uri: post.imageUrl }}
+          />
+        )}
+      </TouchableOpacity>
     </View>
   );
 }
