@@ -37,8 +37,8 @@ export const userRouter = createTRPCRouter({
 
   delete: publicProcedure
     .input(z.string().min(1))
-    .mutation(({ ctx, input }) => {
-      void ctx.db.delete(user).where(eq(schema.user.id, input));
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.delete(user).where(eq(schema.user.id, input));
 
       try {
         const serverClient = StreamChat.getInstance(
@@ -46,7 +46,7 @@ export const userRouter = createTRPCRouter({
           env.STREAM_API_SECRET,
         );
 
-        void serverClient.deleteUser(input, {
+        await serverClient.deleteUser(input, {
           hard_delete: true,
           delete_conversation_channels: true,
         });
