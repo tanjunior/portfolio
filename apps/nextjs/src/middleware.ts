@@ -1,15 +1,9 @@
-import { authMiddleware } from "@clerk/nextjs/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+import { withClerkMiddleware } from "@clerk/nextjs/server";
 
-export default authMiddleware({
-  publicRoutes: [
-    "/",
-    "/(.*)",
-    "/api/email",
-    "/api/stream",
-    "/api/uploadthing",
-    "/api/webhook/clerk",
-    // "/api/trpc/(.*)",
-  ],
+export default withClerkMiddleware((_req: NextRequest) => {
+  return NextResponse.next();
 });
 
 // Stop Middleware running on static files
