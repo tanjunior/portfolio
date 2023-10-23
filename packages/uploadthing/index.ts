@@ -13,8 +13,7 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .onUploadComplete(({ file }) => {
       // This code RUNS ON YOUR SERVER after upload
-
-      console.log("file url", file.url);
+      // console.log("file url", file.url);
     }),
 } satisfies FileRouter;
 
