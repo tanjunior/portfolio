@@ -49,7 +49,7 @@ export const getBaseUrl = (): string => {
  */
 
 export function TRPCProvider({ children }: { children: React.ReactNode }) {
-  const { getToken } = useAuth();
+  const { getToken, userId } = useAuth();
   const [queryClient] = React.useState(() => new QueryClient());
   const [trpcClient] = React.useState(() =>
     api.createClient({
@@ -61,6 +61,7 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
             const authToken = await getToken();
             const headers = new Map<string, string>();
             headers.set("x-trpc-source", "expo-react");
+            headers.set("user-id", userId ?? "");
             if (authToken) headers.set("authorization", authToken);
             return Object.fromEntries(headers);
           },
