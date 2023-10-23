@@ -1,8 +1,10 @@
 import type * as ImagePicker from "expo-image-picker";
 import { genUploader } from "uploadthing/client";
 import type { FileRouter, inferEndpointInput } from "uploadthing/server";
-export type { OurFileRouter } from "@acme/uploadthing";
+
 import { getBaseUrl } from "~/utils/api";
+
+export type { OurFileRouter } from "@acme/uploadthing";
 
 type FileType = {
   uri: string;
@@ -33,9 +35,9 @@ export function useUploadThing<RouterType extends FileRouter>() {
         endpoint,
         files: files.map((asset) => {
           const fileName =
-            asset.fileName || asset.uri.split("/").pop() || "image.jpeg";
+            asset.fileName ?? asset.uri.split("/").pop() ?? "image.jpeg";
 
-            console.log("fileName", fileName);
+          // console.log("fileName", fileName);
 
           return {
             uri: asset.uri,

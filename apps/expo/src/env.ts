@@ -1,10 +1,8 @@
-import { createEnv } from "@t3-oss/env-core";
 import Constants from "expo-constants";
+import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
-const extra = Constants.expoConfig?.extra!
-
-console.log("extra", extra);
+const extra = Constants.expoConfig?.extra!;
 
 export const env = createEnv({
   clientPrefix: "EXPO_PUBLIC_",
