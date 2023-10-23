@@ -3,8 +3,9 @@ import { drizzle } from "drizzle-orm/planetscale-serverless";
 
 import * as post from "./schema/post";
 import * as todo from "./schema/todo";
+import * as user from "./schema/user";
 
-export const schema = { ...post, ...todo };
+export const schema = { ...post, ...todo, ...user };
 
 export * from "drizzle-orm";
 
