@@ -6,7 +6,7 @@ export default authMiddleware({
     "/(.*)",
     "/api/email",
     "/api/stream",
-    "/api/uploadthhing",
+    "/api/uploadthing",
     "/api/webhook/clerk",
     // "/api/trpc/(.*)",
   ],
