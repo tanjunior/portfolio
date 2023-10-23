@@ -23,9 +23,14 @@ export function OAuthButtons() {
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
       } else {
-        // Use signIn or signUp for next steps such as MFA
+        const update = await signUp?.update({
+          username: "test",
+        });
+
+        await setActive!({ session: update?.createdSessionId });
       }
     } catch (err) {
+      console.log(JSON.stringify(err, null, 2));
       console.error("OAuth error", err);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
