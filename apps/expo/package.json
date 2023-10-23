@@ -27,7 +27,6 @@
     "@trpc/client": "^10.23.0",
     "@trpc/react-query": "^10.23.0",
     "@trpc/server": "^10.23.0",
-    "@uploadthing/shared": "^5.0.1",
     "expo": "^49.0.16",
     "expo-av": "~13.4.1",
     "expo-clipboard": "~4.3.1",
@@ -56,12 +55,11 @@
     "react-native-screens": "~3.22.1",
     "react-native-svg": "13.9.0",
     "stream-chat-expo": "^5.19.2",
-    "superjson": "1.13.1",
-    "uploadthing": "^5.1.0"
+    "superjson": "1.13.1"
   },
   "devDependencies": {
-    "@acme/prettier-config": "^0.1.0",
-    "@acme/tsconfig": "^0.1.0",
+    "@acme/prettier-config": "*",
+    "@acme/tsconfig": "*",
     "@acme/api": "*",
     "@acme/eslint-config": "*",
     "@acme/tailwind-config": "*",
