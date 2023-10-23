@@ -36,6 +36,7 @@ export default function CreatePost() {
     async onSuccess() {
       setContent("");
       setProgress(0);
+      setPickedImage([]);
       await utils.post.all.invalidate();
     },
   });
@@ -78,19 +79,22 @@ export default function CreatePost() {
   }
 
   async function handlePublishPost() {
-    setProgress(0);
-    const uploadThingResponse = await uploadThing({
-      files: pickedImage,
-      endpoint: "imageUploader",
-      onUploadProgress({ file: _file, progress }) {
-        setTimeout(() => setProgress(progress), progress * 50);
-      },
-    });
-    console.log(uploadThingResponse);
+    let uploadThingResponse;
+    if (pickedImage.length > 0) {
+      setProgress(0);
+      uploadThingResponse = await uploadThing({
+        files: pickedImage,
+        endpoint: "imageUploader",
+        onUploadProgress({ file: _file, progress }) {
+          setTimeout(() => setProgress(progress), progress * 50);
+        },
+      });
+      console.log(uploadThingResponse);
+    }
 
     mutate({
       content: content,
-      imageUrl: uploadThingResponse[0]?.fileUrl,
+      imageUrl: uploadThingResponse?.[0]?.fileUrl,
     });
   }
 
@@ -113,10 +117,12 @@ export default function CreatePost() {
         {pickedImage.map((image) => (
           <Image
             key={image.uri}
-            className="h-16 w-16"
+            className="h-20 w-20"
             contentFit="cover"
             source={{ uri: image.uri }}
-          />
+          >
+            <Ionicons name="close-circle-outline" size={18} />
+          </Image>
         ))}
       </View>
 
