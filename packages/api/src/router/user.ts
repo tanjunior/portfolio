@@ -32,4 +32,10 @@ export const userRouter = createTRPCRouter({
           },
         });
     }),
+
+  delete: publicProcedure
+    .input(z.string().min(1))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.delete(user).where(eq(schema.user.id, input));
+    }),
 });
