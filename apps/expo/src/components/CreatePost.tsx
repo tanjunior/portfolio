@@ -20,7 +20,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import type { OurFileRouter } from "~/hooks/useUploadThing";
 import { useUploadThing } from "~/hooks/useUploadThing";
-import { api, getBaseUrl } from "~/utils/api";
+import { api } from "~/utils/api";
 
 export default function CreatePost() {
   const utils = api.useUtils();
