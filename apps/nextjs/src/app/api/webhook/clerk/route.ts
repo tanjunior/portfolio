@@ -116,5 +116,29 @@ export async function POST(req: Request) {
     }
   }
 
+  if (eventType === "user.deleted") {
+    const { id } = evt.data;
+
+    const ctx = await createInnerTRPCContext({
+      headers: new Headers(),
+    });
+    const caller = appRouter.createCaller(ctx);
+
+    console.log("doing something");
+    try {
+      console.log("attempt to call trpc");
+      await caller.user.delete(id!);
+    } catch (error) {
+      console.log(error);
+      if (error instanceof TRPCError) {
+        // An error from tRPC occured
+        const httpCode = getHTTPStatusCodeFromError(error);
+        return new Response(error.message, { status: httpCode });
+      }
+      // Another error occured
+      return new Response("Internal server error", { status: 500 });
+    }
+  }
+
   return new Response("", { status: 201 });
 }
