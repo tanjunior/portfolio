@@ -15,6 +15,6 @@ export const authRouter = createTRPCRouter({
     .input(z.string())
     .query(async ({ ctx, input }) => {
       const user = await clerkClient.users.getUser(input);
-      return user.username;
+      return user;
     }),
 });
