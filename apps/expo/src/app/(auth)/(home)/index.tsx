@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 // import { useUser } from "@clerk/clerk-expo";
 import { FlashList } from "@shopify/flash-list";
 
@@ -10,7 +10,7 @@ import { api } from "~/utils/api";
 const Home = () => {
   // const { user } = useUser();
   const { data } = api.post.all.useQuery();
-  const utils = api.useContext();
+  const utils = api.useUtils();
   const deletePostMutation = api.post.delete.useMutation({
     onSettled: () => utils.post.all.invalidate(),
   });
@@ -20,7 +20,7 @@ const Home = () => {
       <CreatePost />
       <FlashList
         data={data}
-        estimatedItemSize={20}
+        estimatedItemSize={112}
         ItemSeparatorComponent={() => <View className="h-2" />}
         renderItem={(p) => (
           <PostCard
