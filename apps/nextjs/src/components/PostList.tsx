@@ -6,7 +6,7 @@ import { api } from "~/utils/client";
 import PostCard, { PostCardSkeleton } from "./PostCard";
 
 export default function PostList({ data }: { data: SelectPost[] }) {
-  const [posts] = api.post.all.useSuspenseQuery(undefined, {
+  const { data: posts } = api.post.all.useQuery(undefined, {
     initialData: data,
   });
 
