@@ -93,7 +93,7 @@ export default function Intro() {
           href="/static/Resume.pdf"
           download
         >
-          Download CV{" "}
+          Download Resume{" "}
           <Icons.download className="opacity-60 transition group-hover:translate-y-1" />
         </a>
 
