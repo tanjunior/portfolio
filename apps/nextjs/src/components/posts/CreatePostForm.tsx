@@ -25,7 +25,6 @@ export default function CreatePostForm() {
         e.preventDefault();
         try {
           await createPost({
-            title,
             content,
           });
           setTitle("");
