@@ -6,8 +6,7 @@ import { env } from "~/env.mjs";
 
 export async function POST(request: Request) {
   const resend = new Resend(env.RESEND_API_KEY);
-  const body = await request.json();
-  const { name, email } = emailSchema.parse(body);
+  const { name, email } = emailSchema.parse(await request.json());
   try {
     const data = await resend.emails.send({
       from: "Tan Jing Ren <contact@tanjingren.me>",
