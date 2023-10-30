@@ -12,7 +12,7 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const todoRouter = createTRPCRouter({
   all: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.todo.findMany({ orderBy: desc(schema.todo.done) });
+    return ctx.db.query.todo.findMany();
   }),
 
   byId: publicProcedure
