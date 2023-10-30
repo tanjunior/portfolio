@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
+import { Icons } from "@/icons";
 import { motion } from "framer-motion";
 
 import { useActiveSectionContext } from "~/contexts/active-section-context";
 import { useSectionInView } from "~/hooks";
-import { Icons } from "../icons";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -20,7 +20,7 @@ export default function Intro() {
       className="mb-28 max-w-[50rem] scroll-mt-[100rem] text-center sm:mb-0"
     >
       <div className="flex items-center justify-center">
-        <div className="relative">
+        <div className="relative h-72">
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -29,7 +29,7 @@ export default function Intro() {
               duration: 0.2,
             }}
           >
-            <Image
+            {/* <Image
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=368&h=368&q=100"
               alt="Ricardo portrait"
               width="192"
@@ -37,7 +37,7 @@ export default function Intro() {
               quality="95"
               priority={true}
               className="h-24 w-24 rounded-full border-[0.35rem] border-white object-cover shadow-xl"
-            />
+            /> */}
           </motion.div>
 
           <motion.span
@@ -51,20 +51,20 @@ export default function Intro() {
               duration: 0.7,
             }}
           >
-            👋
+            {/* 👋 */}
           </motion.span>
         </div>
       </div>
 
       <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
+        className="mb-10 mt-14 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello, I&apos;m Ricardo.</span> I&apos;m a{" "}
-        <span className="font-bold">full-stack developer</span> with{" "}
-        <span className="font-bold">8 years</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>. My focus is{" "}
+        <span className="font-bold">Hello, I&apos;m Tan Jing Ren.</span>{" "}
+        I&apos;m a <span className="font-bold">Fresh graduate</span> from{" "}
+        <span className="font-bold">Murdoch</span> University. I enjoy building{" "}
+        <span className="italic">sites & apps</span>. My focus is{" "}
         <span className="underline">React (Next.js)</span>.
       </motion.h1>
 
@@ -90,7 +90,7 @@ export default function Intro() {
 
         <a
           className="group flex  cursor-pointer items-center gap-2 rounded-full border border-black/10 bg-white px-7 py-3 outline-none transition hover:scale-110 focus:scale-110 active:scale-105 dark:bg-white/10"
-          href="/CV.pdf"
+          href="/static/Resume.pdf"
           download
         >
           Download CV{" "}
@@ -99,7 +99,7 @@ export default function Intro() {
 
         <a
           className="flex cursor-pointer  items-center gap-2 rounded-full border border-black/10 bg-white p-3 text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/in/tanjingren/"
           target="_blank"
           rel="noreferrer"
         >
@@ -108,7 +108,7 @@ export default function Intro() {
 
         <a
           className="flex cursor-pointer  items-center gap-2 rounded-full border border-black/10 bg-white p-2 text-[1.35rem] text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
-          href="https://github.com"
+          href="https://github.com/tanjunior"
           target="_blank"
           rel="noreferrer"
         >
