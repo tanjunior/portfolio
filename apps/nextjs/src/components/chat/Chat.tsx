@@ -69,7 +69,7 @@ export default function Chat() {
             )}
           </div>
 
-          <div className="flex h-16 items-center gap-1 bg-accent p-2">
+          <div className="sticky bottom-0 flex h-16 items-center gap-1 bg-accent p-2">
             <Input
               ref={inputRef}
               type="text"
