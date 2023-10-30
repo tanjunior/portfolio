@@ -9,7 +9,6 @@ import TodoModal from "./TodoModal";
 export default function TodoList({ todos }: { todos: SelectTodo[] }) {
   const { data } = api.todo.all.useQuery(undefined, {
     initialData: todos,
-    refetchOnMount: false,
   });
 
   if (data.length === 0) {
