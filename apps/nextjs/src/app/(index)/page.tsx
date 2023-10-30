@@ -1,27 +1,23 @@
-import Chat from "@/chat/Chat";
-import Todos from "@/todos/Todos";
+import About from "@/portfolio/about";
+import Contact from "@/portfolio/contact";
+import Experience from "@/portfolio/experience";
+import Intro from "@/portfolio/intro";
+import Projects from "@/portfolio/projects";
+import SectionDivider from "@/portfolio/section-divider";
+import Skills from "@/portfolio/skills";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+export const runtime = "edge";
 
-// export const dynamic = "force-dynamic";
-// export const runtime = "edge";
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <Tabs
-      defaultValue="todo"
-      className="mx-auto mt-6 flex w-full flex-col items-center gap-4"
-    >
-      <TabsList>
-        <TabsTrigger value="todo">Todo</TabsTrigger>
-        <TabsTrigger value="chat">Chat</TabsTrigger>
-      </TabsList>
-      <TabsContent value="todo" className="w-full">
-        <Todos />
-      </TabsContent>
-      <TabsContent value="chat" className="w-full">
-        <Chat />
-      </TabsContent>
-    </Tabs>
+    <main className="flex flex-col items-center px-4">
+      <Intro />
+      <SectionDivider />
+      <About />
+      <Projects />
+      <Skills />
+      <Experience />
+      <Contact />
+    </main>
   );
 }

@@ -4,13 +4,14 @@ import { Inter } from "next/font/google";
 import "~/styles/globals.css";
 
 import { headers } from "next/headers";
+import Footer from "@/portfolio/footer";
+import Header from "@/portfolio/header";
+import ThemeSwitch from "@/portfolio/theme-switch";
 import { Toaster } from "@/ui/toaster";
-import { ClerkProvider } from "@clerk/nextjs";
 
-import Header from "~/components/Header";
+import ActiveSectionContextProvider from "~/contexts/active-section-context";
+import ThemeContextProvider from "~/contexts/theme-context";
 import { TRPCReactProvider } from "~/contexts/trpc-context";
-import WebSocketProvider from "~/contexts/websocket-context";
-import { env } from "~/env.mjs";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -25,8 +26,8 @@ const fontSans = Inter({
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Create T3 Turbo",
-  description: "Simple monorepo with shared backend for web & mobile apps",
+  title: "Tan Jing Ren",
+  description: "Portfolio of Tan Jing Ren",
   // openGraph: {
   //   title: "Create T3 Turbo",
   //   description: "Simple monorepo with shared backend for web & mobile apps",
@@ -40,72 +41,28 @@ export const metadata: Metadata = {
   // },
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={["font-sans", fontSans.variable].join(" ")}>
-        <ClerkProvider publishableKey={env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
-          <Header />
+        <div className="absolute right-[11rem] top-[-6rem] -z-10 h-[31.25rem] w-[31.25rem] rounded-full bg-[#fbe2e3] blur-[10rem] dark:bg-[#946263] sm:w-[68.75rem]"></div>
+        <div className="absolute left-[-35rem] top-[-1rem] -z-10 h-[31.25rem] w-[50rem] rounded-full bg-[#dbd7fb] blur-[10rem] dark:bg-[#676394] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem]"></div>
+        <ThemeContextProvider>
           <TRPCReactProvider headers={headers()}>
-            <WebSocketProvider>
-              <main className="md:min-h[calc(100dvh-5rem)] flex min-h-[calc(100dvh-4rem)] flex-col gap-4 space-x-6 space-y-6">
-                {children}
-              </main>
+            <ActiveSectionContextProvider>
+              <Header />
+              {children}
+              <Footer />
+
               <Toaster />
-            </WebSocketProvider>
+              <ThemeSwitch />
+            </ActiveSectionContextProvider>
           </TRPCReactProvider>
-        </ClerkProvider>
-        <footer>
-          <div className="bg-accent">
-            <p>
-              Fullstack framework{" "}
-              <a href="https://github.com/vercel/next.js" className="underline">
-                Next.js
-              </a>{" "}
-              13(App Router) hosted on{" "}
-              <a href="https://vercel.com/" className="underline">
-                Vercel
-              </a>
-            </p>
-            <p>
-              Styled with{" "}
-              <a
-                href="https://github.com/tailwindlabs/tailwindcss"
-                className="underline"
-              >
-                Tailwind CSS
-              </a>{" "}
-              and{" "}
-              <a href="https://github.com/shadcn-ui/ui" className="underline">
-                shadcn-ui
-              </a>
-            </p>
-            <p>
-              Auth by{" "}
-              <a
-                href="https://github.com/nextauthjs/next-auth"
-                className="underline"
-              >
-                Auth.js
-              </a>
-              (next-auth)
-            </p>
-            <p>
-              Database(Postgres) hosted on{" "}
-              <a href="https://neon.tech/" className="underline">
-                Neon
-              </a>
-            </p>
-            <pre>
-              <a
-                href="https://github.com/tanjunior/playground"
-                className="underline"
-              >
-                Github repository for this project
-              </a>
-            </pre>
-          </div>
-        </footer>
+        </ThemeContextProvider>
       </body>
     </html>
   );
