@@ -7,7 +7,7 @@ import Projects from "@/portfolio/projects";
 import SectionDivider from "@/portfolio/section-divider";
 import Skills from "@/portfolio/skills";
 
-import Stack from "~/components/portfolio/stack";
+// import Stack from "~/components/portfolio/stack";
 import { TRPCReactProvider } from "~/contexts/trpc-context";
 
 export const runtime = "edge";
@@ -18,7 +18,7 @@ export default function Home() {
       <Intro />
       <SectionDivider />
       <About />
-      <Stack />
+      {/* <Stack /> */}
       <Projects />
       <Skills />
       <Experience />
