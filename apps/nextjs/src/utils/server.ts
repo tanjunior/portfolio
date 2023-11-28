@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { loggerLink, unstable_httpBatchStreamLink } from "@trpc/client";
 // import { experimental_nextHttpLink } from "@trpc/next/app-dir/links/nextHttp";
 import { experimental_createTRPCNextAppDirServer } from "@trpc/next/app-dir/server";
@@ -29,9 +29,13 @@ export const api = experimental_createTRPCNextAppDirServer<AppRouter>({
           //   };
           // },
           headers() {
-            const heads = new Map(headers());
-            heads.set("x-trpc-source", "nextjs-server");
-            return Object.fromEntries(heads);
+            // const heads = new Map(headers());
+            // heads.set("x-trpc-source", "nextjs-server");
+            // return Object.fromEntries(heads);
+            return {
+              cookie: cookies().toString(),
+              "x-trpc-source": "nextjs-server",
+            };
           },
         }),
       ],

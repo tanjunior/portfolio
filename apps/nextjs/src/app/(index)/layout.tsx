@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 
 import "~/styles/globals.css";
 
-import { headers } from "next/headers";
 import Footer from "@/portfolio/footer";
 import Header from "@/portfolio/header";
 import ThemeSwitch from "@/portfolio/theme-switch";
@@ -11,7 +10,6 @@ import { Toaster } from "@/ui/toaster";
 
 import ActiveSectionContextProvider from "~/contexts/active-section-context";
 import ThemeContextProvider from "~/contexts/theme-context";
-import { TRPCReactProvider } from "~/contexts/trpc-context";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -23,7 +21,7 @@ const fontSans = Inter({
  * make the entire app dynamic. You can move the `TRPCReactProvider` further
  * down the tree (e.g. /dashboard and onwards) to make part of the app statically rendered.
  */
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Tan Jing Ren",
@@ -52,16 +50,14 @@ export default function RootLayout({
         <div className="absolute right-[11rem] top-[-6rem] -z-10 h-[31.25rem] w-[31.25rem] rounded-full bg-[#fbe2e3] blur-[10rem] dark:bg-[#946263] sm:w-[68.75rem]"></div>
         <div className="absolute left-[-35rem] top-[-1rem] -z-10 h-[31.25rem] w-[50rem] rounded-full bg-[#dbd7fb] blur-[10rem] dark:bg-[#676394] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem]"></div>
         <ThemeContextProvider>
-          <TRPCReactProvider headers={headers()}>
-            <ActiveSectionContextProvider>
-              <Header />
-              {children}
-              <Footer />
+          <ActiveSectionContextProvider>
+            <Header />
+            {children}
+            <Footer />
 
-              <Toaster />
-              <ThemeSwitch />
-            </ActiveSectionContextProvider>
-          </TRPCReactProvider>
+            <Toaster />
+            <ThemeSwitch />
+          </ActiveSectionContextProvider>
         </ThemeContextProvider>
       </body>
     </html>

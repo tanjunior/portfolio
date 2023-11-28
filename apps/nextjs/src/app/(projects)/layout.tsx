@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import { cookies } from "next/headers";
 
 import { Toaster } from "~/components/ui/toaster";
 import ThemeContextProvider from "~/contexts/theme-context";
@@ -20,9 +20,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeContextProvider>
-          <TRPCReactProvider headers={headers()}>
+          <TRPCReactProvider cookies={cookies().toString()}>
             {children}
-
             <Toaster />
           </TRPCReactProvider>
         </ThemeContextProvider>

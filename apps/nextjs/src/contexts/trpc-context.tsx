@@ -11,7 +11,8 @@ import { getUrl } from "~/utils/shared";
 
 export function TRPCReactProvider(props: {
   children: React.ReactNode;
-  headers?: Headers;
+  // headers?: Headers;
+  cookies: string;
 }) {
   const [queryClient] = useState(
     () =>
@@ -36,9 +37,13 @@ export function TRPCReactProvider(props: {
         unstable_httpBatchStreamLink({
           url: getUrl(),
           headers() {
-            const headers = new Map(props.headers);
-            headers.set("x-trpc-source", "nextjs-client");
-            return Object.fromEntries(headers);
+            // const headers = new Map(props.headers);
+            // headers.set("x-trpc-source", "nextjs-client");
+            // return Object.fromEntries(headers);
+            return {
+              cookie: props.cookies,
+              "x-trpc-source": "nextjs-client",
+            };
           },
         }),
       ],
