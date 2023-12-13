@@ -35,22 +35,36 @@ export const links = [
 export const experiencesData = [
   {
     title: "Diploma",
-    location: "Singapore",
+    location: "Kaplan Higher Education Academy, Singapore",
     description: " Diploma in Information Technology",
     icon: React.createElement(Icons.graduationCap),
     date: "2014",
   },
   {
+    title: "Software Developer and System Support",
+    location: "converged SOlutions, Singapore",
+    description: "Maintain and update existing systems.",
+    icon: React.createElement(Icons.briefcase),
+    date: "2014",
+  },
+  {
     title: "Operations Specialist",
-    location: "Singapore",
+    location: "NCS Pte Ltd, Singapore",
     description:
-      "I worked as an Operations Specialist at NCS Pte Ltd for 7 years to save up for my degree.",
+      "I worked as an Operations Specialist for 7 years to save up for my degree.",
     icon: React.createElement(Icons.briefcase),
     date: "2015",
   },
   {
+    title: "Service Desk Analyst",
+    location: "ITCS Group, Singapore",
+    description: "ITSM supports Bank of America.",
+    icon: React.createElement(Icons.briefcase),
+    date: "2022",
+  },
+  {
     title: "Bachelor's Degree",
-    location: "Singapore",
+    location: "Murdoch University",
     description:
       "Bachelor of Information Technology in Games Software Design and Production and Mobile and Web Application Development",
     icon: React.createElement(Icons.graduationCap),
