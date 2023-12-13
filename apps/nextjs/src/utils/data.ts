@@ -42,7 +42,7 @@ export const experiencesData = [
   },
   {
     title: "Software Developer and System Support",
-    location: "converged SOlutions, Singapore",
+    location: "Converged Solutions, Singapore",
     description: "Maintain and update existing systems.",
     icon: React.createElement(Icons.briefcase),
     date: "2014",
