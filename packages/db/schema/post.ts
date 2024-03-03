@@ -1,11 +1,24 @@
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { relations, sql } from "drizzle-orm";
-import { mysqlTable, serial, timestamp, varchar } from "drizzle-orm/mysql-core";
+import {
+  mysqlTableCreator,
+  serial,
+  timestamp,
+  varchar,
+} from "drizzle-orm/mysql-core";
 import { createInsertSchema } from "drizzle-zod";
 
 import { user } from "./user";
 
-export const post = mysqlTable("posts", {
+/**
+ * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
+ * database instance for multiple projects.
+ *
+ * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
+ */
+export const createTable = mysqlTableCreator((name) => `portfolio_${name}`);
+
+export const post = createTable("posts", {
   id: serial("id").primaryKey(),
   authorId: varchar("author_id", { length: 64 }).notNull(),
   content: varchar("content", { length: 256 }).notNull(),
