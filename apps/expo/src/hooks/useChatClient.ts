@@ -11,7 +11,7 @@ import { getBaseUrl } from "~/utils/api";
 // import { api, getBaseUrl } from "~/utils/api";
 // import { log } from "~/utils/logger";
 
-const streamAPIkey = env.EXPO_PUBLIC_STREAM_API_KEY
+const streamAPIkey = env.EXPO_PUBLIC_STREAM_API_KEY;
 
 export const chatClient: StreamChat<DefaultStreamChatGenerics> =
   StreamChat.getInstance(streamAPIkey);
