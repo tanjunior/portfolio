@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTableCreator } from "drizzle-orm/mysql-core";
+import { integer, pgEnum, pgTableCreator } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 
 /**
@@ -7,11 +7,13 @@ import { createInsertSchema } from "drizzle-zod";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = mysqlTableCreator((name) => `portfolio_${name}`);
+export const createTable = pgTableCreator((name) => `portfolio_${name}`);
+
+export const keepAliveEnum = pgEnum("id", ["1"]);
 
 export const keepAlive = createTable("keep_alive", {
-  id: mysqlEnum("id", ["1"]).primaryKey(),
-  count: int("count").notNull().default(0),
+  id: keepAliveEnum("id").primaryKey(),
+  count: integer("count").notNull().default(0),
 });
 
 export const updateKeepAliveSchema = createInsertSchema(keepAlive);

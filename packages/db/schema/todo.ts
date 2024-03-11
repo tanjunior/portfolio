@@ -1,10 +1,5 @@
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
-import {
-  boolean,
-  mysqlTableCreator,
-  serial,
-  varchar,
-} from "drizzle-orm/mysql-core";
+import { boolean, pgTableCreator, serial, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -14,7 +9,7 @@ import { z } from "zod";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = mysqlTableCreator((name) => `portfolio_${name}`);
+export const createTable = pgTableCreator((name) => `portfolio_${name}`);
 
 export const todo = createTable("todos", {
   id: serial("id").primaryKey(),

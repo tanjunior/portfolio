@@ -19,7 +19,7 @@
     "typecheck": "turbo typecheck"
   },
   "dependencies": {
-    "@acme/prettier-config": "^0.1.0",
+    "@acme/prettier-config": "*",
     "@manypkg/cli": "^0.21.2",
     "@turbo/gen": "^1.12.4",
     "prettier": "^3.2.5",

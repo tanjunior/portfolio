@@ -1,11 +1,11 @@
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { relations, sql } from "drizzle-orm";
 import {
-  mysqlTableCreator,
+  pgTableCreator,
   serial,
   timestamp,
   varchar,
-} from "drizzle-orm/mysql-core";
+} from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 
 import { user } from "./user";
@@ -16,7 +16,7 @@ import { user } from "./user";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = mysqlTableCreator((name) => `portfolio_${name}`);
+export const createTable = pgTableCreator((name) => `portfolio_${name}`);
 
 export const post = createTable("posts", {
   id: serial("id").primaryKey(),
@@ -26,7 +26,7 @@ export const post = createTable("posts", {
   createdAt: timestamp("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
-  updatedAt: timestamp("updatedAt").onUpdateNow(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
 });
 
 export const postRelations = relations(post, ({ one }) => ({

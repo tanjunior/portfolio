@@ -1,6 +1,6 @@
 import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { relations } from "drizzle-orm";
-import { mysqlTableCreator, varchar } from "drizzle-orm/mysql-core";
+import { pgTableCreator, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 
 import { post } from "./post";
@@ -11,7 +11,7 @@ import { post } from "./post";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = mysqlTableCreator((name) => `portfolio_${name}`);
+export const createTable = pgTableCreator((name) => `portfolio_${name}`);
 
 export const user = createTable("users", {
   id: varchar("id", { length: 64 }).primaryKey(),

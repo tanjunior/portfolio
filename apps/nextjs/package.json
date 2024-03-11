@@ -14,9 +14,9 @@
     "shadcn:add": "pnpm dlx shadcn-ui@latest add"
   },
   "dependencies": {
-    "@acme/api": "^0.1.0",
-    "@acme/auth": "^0.1.0",
-    "@acme/db": "^0.1.0",
+    "@acme/api": "*",
+    "@acme/auth": "*",
+    "@acme/db": "*",
     "@acme/email": "^0.1.0",
     "@acme/uploadthing": "^0.1.0",
     "@clerk/nextjs": "^4.29.9",
